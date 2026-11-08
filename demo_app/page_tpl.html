@@ -1,0 +1,535 @@
+<title>중고차 기록부 구매판정</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#eceff4; --surface:#ffffff; --surface2:#f4f6f9; --fg:#1b2230; --muted:#59647a; --line:#d1d8e3;
+  --accent:#1d3a8c; --accent-fg:#ffffff; --accent-soft:#e3e9f7; --focus:#1d3a8c;
+  --ok:#17653a; --ok-bg:#e1f2e8; --bad:#a3262a; --bad-bg:#fae6e6; --warn:#8a5600; --warn-bg:#fbf0d6;
+  --shadow:rgba(20,30,50,.10); --img-bg:#dfe4ec;
+  --font:"IBM Plex Sans KR","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:var(--font);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10141c; --surface:#171d28; --surface2:#1e2533; --fg:#e4e8f0; --muted:#98a3b8; --line:#2c3547;
+    --accent:#8fa8f0; --accent-fg:#10141c; --accent-soft:#222c46; --focus:#a9bcf5;
+    --ok:#6fd09a; --ok-bg:#16301f; --bad:#ff9a9d; --bad-bg:#3a1d20; --warn:#f0c46a; --warn-bg:#382c10;
+    --shadow:rgba(0,0,0,.4); --img-bg:#0c1017;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10141c; --surface:#171d28; --surface2:#1e2533; --fg:#e4e8f0; --muted:#98a3b8; --line:#2c3547;
+  --accent:#8fa8f0; --accent-fg:#10141c; --accent-soft:#222c46; --focus:#a9bcf5;
+  --ok:#6fd09a; --ok-bg:#16301f; --bad:#ff9a9d; --bad-bg:#3a1d20; --warn:#f0c46a; --warn-bg:#382c10;
+  --shadow:rgba(0,0,0,.4); --img-bg:#0c1017;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.55;overflow-x:hidden;font-variant-numeric:tabular-nums}
+.wrap{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:20px 40px;max-width:1500px;margin:0 auto}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+button{font:inherit;color:inherit;cursor:pointer}
+.mono{font-family:var(--mono)}
+header.top{display:flex;flex-direction:column;gap:6px;padding-bottom:14px;border-bottom:2px solid var(--accent);margin-bottom:14px}
+.team{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.02em}
+h1{margin:0;font-size:24px;line-height:1.25}
+.lead{margin:0;color:var(--fg)}
+.run{margin:0;font-size:12.5px;color:var(--muted)}
+nav.tabs{display:flex;gap:8px;margin-bottom:16px;position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;padding-block:8px;background:var(--bg)}
+nav.tabs a{padding:8px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);text-decoration:none;font-weight:500}
+nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:260px minmax(0,1fr) 400px;gap:16px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0;box-shadow:0 1px 2px var(--shadow)}
+.panel h2{margin:0 0 10px;font-size:14px;color:var(--muted);font-weight:700;letter-spacing:.03em}
+#picker{display:flex;flex-direction:column;gap:6px;padding:0;margin:0;list-style:none}
+.pick{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;text-align:left;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface2)}
+.pick[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.pick .n{font-family:var(--mono);font-size:12px;color:var(--muted);grid-row:span 2;align-self:center}
+.pick .car{font-weight:500;overflow-wrap:anywhere}
+.pick .row2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;min-width:0}
+.pick .plate{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.badge{display:inline-block;padding:0 8px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid currentColor;line-height:1.6}
+.d-ok{color:var(--ok);background:var(--ok-bg)} .d-bad{color:var(--bad);background:var(--bad-bg)} .d-warn{color:var(--warn);background:var(--warn-bg)}
+.pagetabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.pt{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px;border:2px solid var(--line);border-radius:8px;background:var(--surface2);width:84px}
+.pt img{width:100%;height:auto;display:block;border-radius:3px;aspect-ratio:3/4;object-fit:cover;object-position:top;background:var(--img-bg)}
+.pt span{font-size:11px;color:var(--muted);line-height:1.25;text-align:center;overflow-wrap:anywhere}
+.pt[aria-selected="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.pageinfo{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.tag{padding:2px 10px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:13px}
+.big{background:var(--img-bg);border:1px solid var(--line);border-radius:6px;overflow:auto;max-height:80vh}
+.big img{display:block;max-width:100%;height:auto;margin:0 auto}
+.noimg{padding:30px;text-align:center;color:var(--muted)}
+.steps{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.step{flex:1 1 0;min-width:70px;padding:8px 6px;border:1px solid var(--line);border-radius:8px;background:var(--surface2);text-align:center;font-weight:500;font-size:13.5px;position:relative}
+.step small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.step[aria-selected="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.step[aria-selected="true"] small{color:var(--accent-fg)}
+.kv{display:grid;grid-template-columns:minmax(0,max-content) minmax(0,1fr);gap:4px 12px;margin:0;font-size:13.5px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-family:var(--mono);overflow-wrap:anywhere}
+.kv dd.empty{color:var(--muted)}
+.kv dd.diff{color:var(--bad);font-weight:700}
+.ex{border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:10px;background:var(--surface2)}
+.ex h3{margin:0 0 8px;font-size:13px;color:var(--accent)}
+.plist{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.plist li{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.stampbox{display:flex;justify-content:center;padding:6px 0 12px}
+.stamp{display:inline-block;padding:6px 26px;border:4px double currentColor;border-radius:10px;font-size:34px;font-weight:700;letter-spacing:.08em;transform:rotate(-5deg);background:transparent}
+.stamp.d-ok,.stamp.d-bad,.stamp.d-warn{background:transparent}
+.stamp .sub{display:block;font-size:11px;letter-spacing:.1em;text-align:center;font-weight:500;font-family:var(--mono)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.chip{font-family:var(--mono);font-size:12.5px;padding:2px 9px;border-radius:6px;border:1px solid var(--line);background:var(--surface2)}
+.chip.extra{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.chip.miss{border-color:var(--warn);color:var(--warn);background:var(--warn-bg)}
+.reason{margin:8px 0 0}
+.note{margin:10px 0 0;padding:8px 10px;border-left:4px solid var(--warn);background:var(--warn-bg);color:var(--fg);border-radius:4px;font-size:13.5px}
+.md{font-size:14px;overflow-wrap:anywhere}
+.md h1,.md h2,.md h3{font-size:15px;margin:.4em 0}
+.md ul{padding-left:20px;margin:.4em 0} .md p{margin:.4em 0}
+.md strong{color:var(--accent)}
+.docname{font-size:12px;color:var(--muted);font-family:var(--mono);margin-bottom:6px}
+.hint{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.sum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.card .k{font-size:13px;color:var(--muted)}
+.card .v{font-family:var(--mono);font-size:30px;font-weight:500;color:var(--accent)}
+.card .v.part{color:var(--warn)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13.5px;background:var(--surface)}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--surface2);color:var(--muted);font-size:12.5px;white-space:nowrap}
+td.c{text-align:center}
+.vv{display:block;white-space:nowrap;font-family:var(--font);font-size:13.5px;line-height:1.5}
+.vv .l{font-family:inherit;font-size:inherit;color:var(--muted);margin-right:6px}
+.vv.bad .val,.vv.bad .mk{color:var(--bad);font-weight:700} .vv .mk.yes{color:var(--ok);font-weight:700}
+.yes{color:var(--ok);font-weight:700} .no{color:var(--bad);font-weight:700}
+.vnote{margin:14px 0 0;display:flex;flex-direction:column;gap:8px}
+.vnote p{margin:0}
+.markers{font-family:var(--mono)}
+.rowlink{background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;font-family:var(--mono)}
+@media (max-width:1180px){ .grid{grid-template-columns:230px minmax(0,1fr) 340px} }
+@media (max-width:900px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  #picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  .sum{grid-template-columns:repeat(2,minmax(0,1fr))}
+  h1{font-size:20px}
+  .big{max-height:none}
+}
+@media (prefers-reduced-motion: no-preference){
+  .stamp{animation:stampin .35s ease-out}
+  @keyframes stampin{from{transform:rotate(-5deg) scale(1.4);opacity:0}to{transform:rotate(-5deg) scale(1);opacity:1}}
+}
+/* 직접 실행 탭 전용 (기존 토큰만 사용) */
+.drop{display:block;position:relative;border:2px dashed var(--line);border-radius:8px;padding:14px 10px;text-align:center;background:var(--surface2);color:var(--muted);font-size:13.5px;cursor:pointer;overflow-wrap:anywhere}
+.drop.over{border-color:var(--accent);background:var(--accent-soft);color:var(--fg)}
+.drop:focus-within{outline:3px solid var(--focus);outline-offset:2px}
+.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.field{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.field label{font-size:13px;color:var(--muted)}
+.sel{font:inherit;color:var(--fg);padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface2);width:100%}
+.runbtn{margin-top:12px;width:100%;padding:8px 16px;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:var(--accent-fg);font-weight:500}
+.runbtn:disabled{opacity:.5;cursor:not-allowed}
+.raw{margin-top:12px}
+.raw summary{cursor:pointer;font-weight:500;color:var(--accent)}
+.raw pre{margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--mono);font-size:12.5px;max-height:320px;overflow:auto}
+.step.idle{opacity:.55}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="team">Agent가 돼버려</div>
+    <h1>중고차 기록부 구매판정</h1>
+    <p class="lead">성능·상태점검기록부 PDF로 구매 적합 여부, 사유 코드, 후속 안내문을 생성함.</p>
+    <p class="run">실행: 2026-11-05 · Upstage Studio 워크플로우 · 더미 데이터(가상 차량번호·차대번호)</p>
+  </header>
+  <nav class="tabs" aria-label="화면 선택">
+    <a id="nav-demo" href="#demo">데모</a>
+    <a id="nav-verify" href="#verify">검증</a>
+    <a id="nav-live" href="#live">직접 실행</a>
+  </nav>
+  <main id="app"></main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+<script type="application/json" id="cases">__CASES__</script>
+<script>
+(function(){
+  var CASES = JSON.parse(document.getElementById('cases').textContent);
+  var app = document.getElementById('app');
+  var state = {id: 'set07', page: 0, step: 'judge'};
+  var FIELDS = [['vehicle_no','차량번호'],['vin','차대번호'],['model_year','연식'],['first_registration','최초등록일'],['mileage_km','주행거리(km)'],['inspection_date','점검일'],['inspection_valid_until','검사유효기간'],['accident_history','사고이력'],['simple_repair','단순수리'],['damaged_parts','손상 부위'],['device_issues','장치 이상'],['usage_change','용도변경'],['special_history','특수이력'],['remarks','비고']];
+  var STEPS = [['classify','Classify'],['extract','Extract'],['judge','판정'],['doc','안내문']];
+  var DOCNAME = {'적합':'구매 체크시트','부적합':'구매위험 안내','검토필요':'판매자 확인요청'};
+
+  function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+  function dcls(d){ return d==='적합'?'d-ok':(d==='부적합'?'d-bad':'d-warn'); }
+  function byId(id){ for(var i=0;i<CASES.length;i++) if(CASES[i].set===id) return CASES[i]; return CASES[0]; }
+  function pageTypes(c){
+    var arr=[]; for(var i=0;i<c.pages;i++) arr.push('');
+    c.page_types.forEach(function(p){
+      var m=String(p.split).match(/(\d+)(?:\s*-\s*(\d+))?/); if(!m) return;
+      var a=+m[1], b=m[2]?+m[2]:a; for(var k=a;k<=b;k++) if(k>=1&&k<=c.pages) arr[k-1]=p.type;
+    });
+    return arr;
+  }
+  function carName(c){ return (c.extracted[0]&&c.extracted[0].car_name)||'(차명 없음)'; }
+  function shortCar(c){ return carName(c).replace(/\s*\(.*$/,''); }
+  function sameSet(a,b){ a=a||[]; b=b||[]; return a.length===b.length && a.every(function(x){return b.indexOf(x)>=0;}); }
+  function cmp(c){
+    var p=c.predicted,a=c.answer;
+    return {
+      decision: p.decision_choice===a.decision,
+      codes: sameSet(p.reason_codes,a.reason_codes),
+      vehicle_no: p.vehicle_no===a.vehicle_no,
+      vin: p.vin===a.vin,
+      extra: (p.reason_codes||[]).filter(function(x){return (a.reason_codes||[]).indexOf(x)<0;}),
+      missing: (a.reason_codes||[]).filter(function(x){return (p.reason_codes||[]).indexOf(x)<0;})
+    };
+  }
+  function badge(d){ return el('span','badge '+dcls(d), d); }
+  function chips(codes, cls){
+    var w=el('div','chips');
+    if(!codes||!codes.length){ w.appendChild(el('span','chip','코드 없음')); return w; }
+    codes.forEach(function(x){ w.appendChild(el('span','chip'+(cls?' '+cls:''),x)); });
+    return w;
+  }
+
+  function renderDemo(){
+    app.textContent='';
+    var c=byId(state.id);
+    if(state.page>=c.pages) state.page=0;
+    var g=el('div','grid'); app.appendChild(g);
+
+    var p1=el('section','panel'); p1.appendChild(el('h2',null,'샘플 10건'));
+    var ul=el('ul'); ul.id='picker';
+    CASES.forEach(function(x){
+      var li=el('li'); var b=el('button','pick'); b.type='button'; b.id='pick-'+x.set;
+      b.setAttribute('aria-pressed', x.set===state.id?'true':'false');
+      b.appendChild(el('span','n',x.set.replace('set','#')));
+      b.appendChild(el('span','car',shortCar(x)));
+      var r=el('span','row2'); r.appendChild(el('span','plate',x.predicted.vehicle_no)); r.appendChild(badge(x.predicted.decision_choice)); b.appendChild(r);
+      b.addEventListener('click',function(){ state.id=x.set; state.page=0; history.replaceState(null,'','#demo/'+x.set); renderDemo(); });
+      li.appendChild(b); ul.appendChild(li);
+    });
+    p1.appendChild(ul);
+    p1.appendChild(el('p','hint','차량번호·차대번호는 가상 값.'));
+    g.appendChild(p1);
+
+    var p2=el('section','panel'), p3=el('section','panel'); g.appendChild(p2); g.appendChild(p3);
+    fillCols(p2,p3,c,state,{img:function(i){ return 'img/'+c.doc+'_p'+(i+1)+'.jpg'; }, again:renderDemo});
+  }
+
+  /* 문서 뷰어(p2)와 워크플로우(p3)를 case 객체로 그림. 데모·직접 실행 공용.
+     S={page,step}, o={img(i), again(), docline, pending, emptyMsg} */
+  function fillCols(p2,p3,c,S,o){
+    var types=pageTypes(c);
+    p2.textContent=''; p3.textContent='';
+    p2.appendChild(el('h2',null,'기록부 문서'));
+    p2.appendChild(el('div','docname',o.docline!=null?o.docline:(c.doc+' · '+c.pages+'쪽 · '+carName(c))));
+    if(!c.pages){
+      var eb=el('div','big'); eb.appendChild(el('div','noimg',o.emptyMsg||'이미지 없음')); p2.appendChild(eb);
+    } else {
+      var tabs=el('div','pagetabs'); tabs.setAttribute('role','tablist'); tabs.setAttribute('aria-label','페이지');
+      for(var i=0;i<c.pages;i++){ (function(i){
+        var t=el('button','pt'); t.type='button'; t.id='page-tab-'+(i+1); t.setAttribute('role','tab'); t.setAttribute('aria-selected', i===S.page?'true':'false');
+        var im=document.createElement('img'); im.alt=(i+1)+'쪽 축소 이미지'; im.loading='lazy'; im.src=o.img(i);
+        t.appendChild(im); t.appendChild(el('span',null,(i+1)+'쪽'+(o.pending?'':' · '+(types[i]||'미분류'))));
+        t.addEventListener('click',function(){ S.page=i; o.again(); });
+        tabs.appendChild(t);
+      })(i); }
+      p2.appendChild(tabs);
+      var info=el('div','pageinfo'); if(!o.pending) info.appendChild(el('span','tag',types[S.page]||'미분류'));
+      var pc=el('span','hint',(S.page+1)+' / '+c.pages+'쪽'); pc.style.margin='0'; info.appendChild(pc); p2.appendChild(info);
+      var big=el('div','big'); var bi=document.createElement('img'); bi.id='page-big'; bi.alt=(c.doc||'업로드 문서')+' '+(S.page+1)+'쪽 (가상 데이터)'; bi.src=o.img(S.page);
+      bi.addEventListener('error',function(){ big.textContent=''; big.appendChild(el('div','noimg','이미지 로드 실패')); });
+      big.appendChild(bi); p2.appendChild(big);
+    }
+
+    p3.appendChild(el('h2',null,'워크플로우'));
+    var st=el('div','steps'); st.setAttribute('role','tablist'); st.setAttribute('aria-label','워크플로우 단계');
+    STEPS.forEach(function(s,i){
+      var b=el('button','step'+(o.pending?' idle':'')); b.type='button'; b.id='step-'+s[0]; b.setAttribute('role','tab'); b.setAttribute('aria-selected', (!o.pending&&S.step===s[0])?'true':'false');
+      if(o.pending) b.disabled=true;
+      b.appendChild(document.createTextNode(s[1])); b.appendChild(el('small',null,(i+1)+'/4'));
+      b.addEventListener('click',function(){ S.step=s[0]; o.again(); });
+      st.appendChild(b);
+    });
+    p3.appendChild(st);
+    var out=el('div'); out.id='step-out'; out.setAttribute('role','tabpanel');
+    if(o.pending) out.appendChild(el('p','hint','실행하면 단계별 결과가 여기에 표시됨.'));
+    else if(S.step==='classify') stepClassify(out,c,types);
+    else if(S.step==='extract') stepExtract(out,c);
+    else if(S.step==='judge') stepJudge(out,c);
+    else stepDoc(out,c);
+    p3.appendChild(out);
+  }
+
+  function stepClassify(out,c,types){
+    out.appendChild(el('p','hint','Parse(OCR) 후 쪽별 문서 종류 분류.'));
+    var ul=el('ul','plist');
+    types.forEach(function(t,i){ var li=el('li'); li.appendChild(el('span','mono',(i+1)+'쪽')); li.appendChild(el('span','tag',t||'미분류')); ul.appendChild(li); });
+    out.appendChild(ul);
+  }
+  function stepExtract(out,c){
+    out.appendChild(el('p','hint','기록부·별지·견적서 추출 노드를 Merge한 값.'));
+    c.extracted.forEach(function(e,idx){
+      var box=el('div','ex'); box.appendChild(el('h3',null,'추출 '+(idx+1)+(e.split?' · '+String(e.split).replace('p','쪽'):'')));
+      var dl=el('dl','kv');
+      var keys=FIELDS.slice();
+      Object.keys(e).forEach(function(k){ if(/^(attach_|estimate_)/.test(k)) keys.push([k,k]); });
+      keys.forEach(function(f){
+        var v=e[f[0]]; if(v===undefined) v='';
+        dl.appendChild(el('dt',null,f[1]));
+        var dd=el('dd',(v===''?'empty':''), v===''?'(비어 있음)':String(v));
+        if(f[0]==='estimate_vin' && e.vin && v!==e.vin) dd.className='diff';
+        dl.appendChild(dd);
+      });
+      box.appendChild(dl); out.appendChild(box);
+    });
+  }
+  function stepJudge(out,c){
+    var p=c.predicted;
+    var sb=el('div','stampbox'); var s=el('div','stamp '+dcls(p.decision_choice), p.decision_choice); s.id='stamp'; s.appendChild(el('span','sub','판정')); sb.appendChild(s); out.appendChild(sb);
+    out.appendChild(chips(p.reason_codes));
+    out.appendChild(el('p','reason',p.reason));
+  }
+  function stepDoc(out,c){
+    out.appendChild(el('div','docname','안내문 종류: '+(DOCNAME[c.predicted.decision_choice]||'')+' · 분기 노드 '+c.branch.name));
+    var md=el('div','md'); md.id='branch-doc';
+    var t=c.branch.text||'';
+    if(!t){ md.textContent='(안내문 없음)'; }
+    else if(window.marked && window.DOMPurify){ md.innerHTML=DOMPurify.sanitize(marked.parse(t)); }
+    else { md.style.whiteSpace='pre-wrap'; md.textContent=t; }
+    out.appendChild(md);
+  }
+
+  function renderVerify(){
+    app.textContent='';
+    var R=CASES.map(function(c){return cmp(c);});
+    function cnt(k){ return R.filter(function(r){return r[k];}).length; }
+    var N=CASES.length;
+    var sum=el('div','sum');
+    [['판정','decision'],['사유 코드','codes'],['등록번호','vehicle_no'],['차대번호','vin']].forEach(function(s){
+      var n=cnt(s[1]); var card=el('div','card'); card.id='sum-'+s[1];
+      card.appendChild(el('div','k',s[0])); card.appendChild(el('div','v'+(n<N?' part':''),n+'/'+N)); sum.appendChild(card);
+    });
+    app.appendChild(sum);
+
+    var pn=el('section','panel'); pn.appendChild(el('h2',null,'정답과 예측 비교 (10건)'));
+    var tw=el('div','tw'); var tb=el('table'); tb.id='verify-table';
+    var th=el('thead'); var hr=el('tr');
+    ['set','결과','판정','사유 코드','등록번호','차대번호'].forEach(function(h){ hr.appendChild(el('th',null,h)); });
+    th.appendChild(hr); tb.appendChild(th);
+    var tbd=el('tbody');
+    CASES.forEach(function(c,i){
+      var r=R[i], tr=el('tr');
+      var td=el('td'); var b=el('button','rowlink',c.set); b.type='button'; b.id='vrow-'+c.set; b.addEventListener('click',function(){ state.id=c.set; state.page=0; location.hash='#demo/'+c.set; }); td.appendChild(b); tr.appendChild(td);
+      td=el('td','rescell'); td.id='res-'+c.set;
+      td.appendChild(el('span','vv '+(r.decision?'yes':'no'),r.decision?'일치':'불일치'));
+      tr.appendChild(td);
+      td=el('td','vcell'); td.id='v-'+c.set+'-decision';
+      var d1=el('span','vv'); d1.appendChild(el('span','l','정답 ')); d1.appendChild(el('span','val',String(c.answer.decision==null?'':c.answer.decision))); td.appendChild(d1);
+      var d2=el('span','vv'+(r.decision?'':' bad')); d2.appendChild(el('span','l','예측 ')); d2.appendChild(el('span','val',String(c.predicted.decision_choice==null?'':c.predicted.decision_choice))); td.appendChild(d2);
+      tr.appendChild(td);
+      td=el('td','vcell'); td.id='v-'+c.set+'-codes';
+      var ac=c.answer.reason_codes||[], pc=c.predicted.reason_codes||[];
+      var q1=el('span','vv'); q1.appendChild(el('span','l','정답 ')); q1.appendChild(el('span','val',ac.length?ac.join(', '):'없음')); td.appendChild(q1);
+      var q2=el('span','vv'+(r.codes?'':' bad')); q2.appendChild(el('span','l','예측 ')); q2.appendChild(el('span','val',pc.length?pc.join(', '):'없음')); td.appendChild(q2);
+      if(!r.codes){
+        if(r.extra.length){ var x=el('span','vv bad'); x.appendChild(el('span','l','오탐 ')); x.appendChild(el('span','val',r.extra.join(', '))); td.appendChild(x); }
+        if(r.missing.length){ var x=el('span','vv bad'); x.appendChild(el('span','l','미탐 ')); x.appendChild(el('span','val',r.missing.join(', '))); td.appendChild(x); }
+      }
+      tr.appendChild(td);
+      [['vehicle_no'],['vin']].forEach(function(f){ var k=f[0], ok=r[k]; var cell=el('td','vcell'); cell.id='v-'+c.set+'-'+k;
+        var l1=el('span','vv'); l1.appendChild(el('span','l','정답 ')); l1.appendChild(el('span','val',String(c.answer[k]==null?'':c.answer[k])));
+        var l2=el('span','vv'+(ok?'':' bad')); l2.appendChild(el('span','l','예측 ')); l2.appendChild(el('span','val',String(c.predicted[k]==null?'':c.predicted[k])));
+        cell.appendChild(l1); cell.appendChild(l2); tr.appendChild(cell); });
+      tbd.appendChild(tr);
+    });
+    tb.appendChild(tbd); tw.appendChild(tb); pn.appendChild(tw);
+
+    app.appendChild(pn);
+  }
+
+  function route(){
+    var h=location.hash||'#demo';
+    var parts=h.replace(/^#/,'').split('/');
+    var view=parts[0]==='verify'?'verify':(parts[0]==='live'?'live':'demo');
+    if(parts[1] && /^set\d\d$/.test(parts[1])){ state.id=parts[1]; state.page=0; }
+    var nd=document.getElementById('nav-demo'), nv=document.getElementById('nav-verify'), nl=document.getElementById('nav-live');
+    [nd,nv,nl].forEach(function(a){ a.removeAttribute('aria-current'); });
+    if(view==='verify'){ nv.setAttribute('aria-current','page'); renderVerify(); }
+    else if(view==='live'){ nl.setAttribute('aria-current','page'); renderLive(); }
+    else { nd.setAttribute('aria-current','page'); renderDemo(); }
+  }
+
+  /* ---------- 직접 실행 ---------- */
+  var LIVE = {root:null, p2:null, p3:null, file:null, sample:'', imgs:[], rendering:false, token:0, page:0, step:'judge', jobId:null, timer:null, busy:false, status:'', elapsed:0, error:'', result:null};
+  var DROPTXT = 'PDF를 끌어 놓거나 눌러서 선택';
+  var PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+
+  function setByName(id){ for(var i=0;i<CASES.length;i++) if(CASES[i].set===id) return CASES[i]; return null; }
+  function stripCite(v){
+    if(typeof v==='string') return v.replace(/【†\d+】/g,'');
+    if(Array.isArray(v)) return v.map(stripCite);
+    if(v && typeof v==='object'){ var o={}; Object.keys(v).forEach(function(k){ o[k]=stripCite(v[k]); }); return o; }
+    return v;
+  }
+  function loadPdfJs(cb){
+    if(window.pdfjsLib) return cb();
+    var s=document.createElement('script'); s.src=PDFJS+'pdf.min.js';
+    s.onload=function(){ cb(); }; s.onerror=function(){ cb('fail'); };
+    document.head.appendChild(s);
+  }
+  /* 파일을 고를 때 한 번만 쪽 이미지로 변환 (폴링·상태 갱신에서는 호출하지 않음) */
+  function renderPdf(src, tok){
+    var p=(src instanceof Blob)? src.arrayBuffer() : Promise.resolve(src);
+    p.then(function(buf){ return new Promise(function(res,rej){ loadPdfJs(function(e){ if(e) rej(e); else res(buf); }); }); })
+     .then(function(buf){
+       pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS+'pdf.worker.min.js';
+       return pdfjsLib.getDocument({data:buf}).promise;
+     })
+     .then(function(pdf){
+       var imgs=[], seq=Promise.resolve();
+       for(var i=1;i<=pdf.numPages;i++){ (function(i){
+         seq=seq.then(function(){ return pdf.getPage(i); }).then(function(page){
+           var vp=page.getViewport({scale:1.5}); var cv=document.createElement('canvas'); cv.width=vp.width; cv.height=vp.height;
+           return page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise.then(function(){ imgs.push(cv.toDataURL('image/jpeg',0.85)); });
+         });
+       })(i); }
+       return seq.then(function(){ return imgs; });
+     })
+     .then(function(imgs){ if(tok!==LIVE.token) return; LIVE.imgs=imgs; LIVE.rendering=false; paintLive(); })
+     .catch(function(){ if(tok!==LIVE.token) return; LIVE.rendering=false; LIVE.error='PDF 쪽 이미지를 만들지 못함.'; paintLive(); });
+  }
+  function resetPick(){ LIVE.token++; LIVE.imgs=[]; LIVE.page=0; LIVE.step='judge'; LIVE.error=''; LIVE.result=null; LIVE.status=''; LIVE.rendering=false; }
+  function pickFile(f){
+    if(!f) return;
+    if(!/\.pdf$/i.test(f.name)){ LIVE.error='PDF 파일만 올릴 수 있음.'; paintLive(); return; }
+    resetPick(); LIVE.file=f; LIVE.sample=''; LIVE.rendering=true; paintLive();
+    renderPdf(f, LIVE.token);
+  }
+  function pickSample(name){
+    resetPick(); LIVE.sample=name; LIVE.file=null;
+    if(name){
+      var m=name.match(/^(set\d\d)\.pdf$/i), c=m&&setByName(m[1].toLowerCase());
+      if(c){ for(var i=0;i<c.pages;i++) LIVE.imgs.push('img/'+c.doc+'_p'+(i+1)+'.jpg'); }
+      else {
+        LIVE.rendering=true; var tok=LIVE.token;
+        fetch('/samples/'+encodeURIComponent(name)).then(function(r){ return r.arrayBuffer(); }).then(function(b){ renderPdf(b,tok); })
+          .catch(function(){ if(tok!==LIVE.token) return; LIVE.rendering=false; LIVE.error='샘플을 불러오지 못함.'; paintLive(); });
+      }
+    }
+    paintLive();
+  }
+  function stopTimer(){ if(LIVE.timer){ clearTimeout(LIVE.timer); LIVE.timer=null; } }
+  function finishErr(msg){ stopTimer(); LIVE.busy=false; LIVE.error=msg; LIVE.status=''; paintLive(); }
+  function readJson(r){ return r.json().catch(function(){ return {ok:false,error:'서버 응답을 읽지 못함.'}; }); }
+
+  function runLive(){
+    if(LIVE.busy) return;
+    if(!LIVE.file && !LIVE.sample){ LIVE.error='PDF를 올리거나 샘플을 고를 것.'; paintLive(); return; }
+    LIVE.busy=true; LIVE.error=''; LIVE.result=null; LIVE.page=0; LIVE.step='judge'; LIVE.status='업로드 중'; LIVE.elapsed=0; paintLive();
+    var init;
+    if(LIVE.file){ var fd=new FormData(); fd.append('file',LIVE.file); init={method:'POST',body:fd}; }
+    else { init={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sample:LIVE.sample})}; }
+    fetch('/api/run',init).then(readJson).then(function(j){
+      if(!j.ok){ finishErr(j.error||'실행하지 못함.'); return; }
+      LIVE.jobId=j.job_id; LIVE.status=j.status||'queued'; paintLive(); poll();
+    }).catch(function(){ finishErr('서버에 연결하지 못함. app.py가 실행 중인지 확인할 것.'); });
+  }
+  function poll(){
+    fetch('/api/job/'+encodeURIComponent(LIVE.jobId)).then(readJson).then(function(j){
+      if(!j.ok){ finishErr(j.error||'실행이 실패함.'); return; }
+      LIVE.status=j.status; LIVE.elapsed=j.elapsed;
+      if(j.status==='completed'){ stopTimer(); LIVE.busy=false; LIVE.result=j; paintLive(); return; }
+      paintStatus(); LIVE.timer=setTimeout(poll,2000);
+    }).catch(function(){ finishErr('서버에 연결하지 못함. app.py가 실행 중인지 확인할 것.'); });
+  }
+
+  function buildLive(){
+    var g=el('div','grid'); LIVE.root=g;
+    var p1=el('section','panel'); g.appendChild(p1);
+    LIVE.p2=el('section','panel'); g.appendChild(LIVE.p2);
+    LIVE.p3=el('section','panel'); g.appendChild(LIVE.p3);
+
+    p1.appendChild(el('h2',null,'입력'));
+    var drop=el('label','drop'); drop.id='live-drop';
+    var inp=document.createElement('input'); inp.type='file'; inp.accept='application/pdf,.pdf'; inp.id='live-file';
+    drop.appendChild(inp);
+    var dt=el('span',null,DROPTXT); dt.id='live-dropname'; drop.appendChild(dt);
+    inp.addEventListener('change',function(){ pickFile(inp.files[0]); });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+    ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.remove('over'); }); });
+    drop.addEventListener('drop',function(e){ pickFile(e.dataTransfer && e.dataTransfer.files[0]); });
+    p1.appendChild(drop);
+
+    var f2=el('div','field'); var lb=el('label',null,'또는 샘플 선택'); lb.setAttribute('for','live-sample');
+    var sel=el('select','sel'); sel.id='live-sample';
+    var o0=document.createElement('option'); o0.value=''; o0.textContent='(선택 안 함)'; sel.appendChild(o0);
+    sel.addEventListener('change',function(){ pickSample(sel.value); });
+    f2.appendChild(lb); f2.appendChild(sel); p1.appendChild(f2);
+    fetch('/samples').then(readJson).then(function(j){
+      (j.samples||[]).forEach(function(n){ var o=document.createElement('option'); o.value=n; o.textContent=n.replace(/\.pdf$/i,''); sel.appendChild(o); });
+      sel.value=LIVE.sample||'';
+    }).catch(function(){});
+
+    var rb=el('button','runbtn','실행'); rb.type='button'; rb.id='live-run'; rb.addEventListener('click',runLive); p1.appendChild(rb);
+    var stat=el('p','hint'); stat.id='live-status'; stat.setAttribute('aria-live','polite'); p1.appendChild(stat);
+    p1.appendChild(el('p','hint','실행할 때마다 Studio 사용량이 소모됨.'));
+    var err=el('div'); err.id='live-err'; err.setAttribute('role','alert'); p1.appendChild(err);
+  }
+
+  function paintStatus(){
+    var stat=LIVE.root.querySelector('#live-status'), r=LIVE.result;
+    if(LIVE.busy) stat.textContent='상태: '+(LIVE.status||'queued')+' · '+Math.round(LIVE.elapsed||0)+'초 경과';
+    else if(r) stat.textContent='완료 · '+Math.round(r.elapsed||0)+'초'+(r.saved_as?' · results/'+r.saved_as:'');
+    else stat.textContent='';
+  }
+
+  function paintLive(){
+    if(!LIVE.root) return;
+    var q=function(id){ return LIVE.root.querySelector('#'+id); };
+    q('live-run').disabled=LIVE.busy;
+    q('live-dropname').textContent=LIVE.file?LIVE.file.name:DROPTXT;
+    var sel=q('live-sample'); if(sel.value!==(LIVE.sample||'')) sel.value=LIVE.sample||'';
+    var err=q('live-err'); err.textContent=''; if(LIVE.error){ err.appendChild(el('p','note',LIVE.error)); }
+    paintStatus();
+
+    var r=LIVE.result, name=LIVE.file?LIVE.file.name:(LIVE.sample||'');
+    var rc=r&&r.case?stripCite(r.case):null;
+    var n=LIVE.imgs.length||(rc?rc.pages:0);
+    var c, o={img:function(i){ return LIVE.imgs[i]||''; }, again:paintLive, pending:!rc,
+              emptyMsg:LIVE.rendering?'쪽 이미지 변환 중':'PDF를 고르면 여기에 표시됨'};
+    if(rc){ c=Object.assign({}, rc, {pages:n}); o.docline=name+' · '+n+'쪽 · '+carName(c); }
+    else { c={doc:'', pages:LIVE.imgs.length, page_types:[], extracted:[]}; o.docline=name?(name+(c.pages?' · '+c.pages+'쪽':'')):''; }
+    if(LIVE.page>=c.pages) LIVE.page=0;
+    fillCols(LIVE.p2,LIVE.p3,c,LIVE,o);
+
+    if(!r) return;
+    if(!rc) LIVE.p3.appendChild(el('p','note','결과를 화면용으로 바꾸지 못함. 아래 원본 출력을 볼 것.'));
+    var det=document.createElement('details'); det.className='raw'; det.id='live-raw';
+    det.appendChild(el('summary',null,'단계별 원본 출력 ('+(r.steps||[]).length+')'));
+    (r.steps||[]).forEach(function(s,i){
+      det.appendChild(el('div','docname',(i+1)+'. '+(s.step||'(이름 없음)')));
+      det.appendChild(el('pre',null,stripCite(s.display!=null?s.display:(s.text||''))));
+    });
+    LIVE.p3.appendChild(det);
+  }
+
+  function renderLive(){
+    app.textContent='';
+    if(!LIVE.root) buildLive();
+    app.appendChild(LIVE.root);
+    paintLive();
+  }
+  window.addEventListener('hashchange',route);
+  route();
+})();
+</script>
