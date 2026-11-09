@@ -258,7 +258,14 @@ def parse_response(resp):
             display = json.dumps(pj, ensure_ascii=False, indent=2)
         else:
             display = text
+        classes = []   # 분류 노드: 콘텐츠 항목마다 (카테고리, 쪽 범위)
+        if "classify" in (it.get("step_type") or "").lower():
+            for c in (to_dict(c) for c in it.get("content") or []):
+                cav = decode_extra(c)
+                if c.get("text") and isinstance(cav, dict):
+                    classes.append((c["text"].strip(), cav.get("page_ranges") or []))
         steps.append({
+            "classes": classes,
             "display": display,
             "step": name,
             "step_type": it.get("step_type") or "",
@@ -331,6 +338,11 @@ def to_case(steps, summary, choice, doc):
                 if len(rg) == 2:
                     types.append((int(rg[0]), int(rg[1]), label))
                     step_ranges.setdefault(key_step.get(key), []).append((int(rg[0]), int(rg[1])))
+    cls = [(int(rg[0]), int(rg[1]), TYPE_LABEL.get(cat, cat or "미분류"))
+           for st in steps if st["stage"] == "classify"
+           for cat, rgs in st.get("classes") or [] for rg in rgs if len(rg) == 2]
+    if cls:   # 쪽 종류는 분류 노드 결과 기준(병합에 안 이어진 갈래도 포함). 없으면 병합 기준 유지
+        types = cls
     types.sort()
     pages = next((st["pages"] for st in steps if st.get("pages")), None) or max([t[1] for t in types] or [0])
     page_types = [{"split": split_label(a, b), "type": t} for a, b, t in types]
