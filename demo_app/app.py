@@ -59,7 +59,7 @@ def get_client():
 
 def get_ids():
     agent_id = os.getenv("AGENT_ID", "").strip()
-    config_id = os.getenv("CONFIG_ID", "1").strip() or "1"
+    config_id = os.getenv("CONFIG_ID", "2").strip() or "2"
     if not agent_id:
         raise UserError("AGENT_ID가 설정되지 않음. .env 파일을 확인할 것.", 500)
     return agent_id, config_id

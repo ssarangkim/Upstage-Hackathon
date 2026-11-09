@@ -1,7 +1,7 @@
 [
  {
   "set": "set01",
-  "doc": "DOC_01",
+  "doc": "set01",
   "case": "A",
   "pages": 2,
   "page_types": [
@@ -19,12 +19,12 @@
     "first_registration": "2022-06-28",
     "mileage_km": "67400",
     "inspection_date": "2026-10-07",
-    "inspection_valid_until": "2027-06-28",
+    "inspection_valid_until": "2027-06-27",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
     "device_issues": "",
-    "usage_change": "영업용",
+    "usage_change": "렌트",
     "special_history": "없음",
     "remarks": "",
     "split": "1-2p"
@@ -32,18 +32,16 @@
   ],
   "predicted": {
    "decision_choice": "검토필요",
-   "body_decision": "검토필요",
    "vehicle_no": "51하8826",
    "vin": "KNABHE2MAPA756734",
    "reason_codes": [
-    "R-USAGE",
-    "R-VIN-YEAR"
+    "R-USAGE"
    ],
-   "reason": "용도변경 값이 영업용으로 확인되어 검토필요 사유에 해당합니다. 또한 차대번호 10번째 자리는 'A'인데 연식은 2023으로 기재되어 있어, 제시된 연식 코드 기준(2023=P)과 일치하지 않아 검토가 필요합니다."
+   "reason": "용도변경 값이 렌트로 추출되어 있어 R-USAGE에 해당합니다. 사고이력 없음, 단순수리 없음, 이상 부위 없음, 주요장치 불량 없음으로 부적합 사유는 확인되지 않았습니다."
   },
   "branch": {
    "name": "판매자_확인요청",
-   "text": "**차량 상태 확인 요청**\n\n- **차량**: 레이 (세부모델:1.0시그니처), 51하8826\n- **R-USAGE 확인 요청**: 성능점검기록부상 용도변경이 **영업용**으로 표시되어 있습니다. 영업용 사용 이력의 기간·용도를 확인해 주시겠습니까?\n- **R-VIN-YEAR 확인 요청**: 차대번호는 **KNABHE2MAPA756734**이고 연식은 **2023년**으로 기재되어 있습니다. 연식 표기가 맞는지 관련 증빙과 함께 확인 부탁드립니다.\n- **안내**: 위 답변과 증빙을 확인하기 전까지는 계약 진행을 보류하시길 권고드립니다."
+   "text": "**차량 상태 확인 요청**\n\n차량: 레이 (세부모델:1.0시그니처) / 51하8826\n용도변경이 렌트로 확인되어 검토가 필요합니다. 렌트 사용 기간과 이력을 알려 주십시오.\n답변 확인 전에는 계약을 보류하는 것이 좋겠습니다."
   },
   "answer": {
    "vehicle_no": "51하8826",
@@ -56,15 +54,15 @@
   },
   "match": {
    "decision": true,
-   "codes": false,
+   "codes": true,
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 12
+  "markers_removed": 7
  },
  {
   "set": "set02",
-  "doc": "DOC_03",
+  "doc": "set02",
   "case": "B",
   "pages": 4,
   "page_types": [
@@ -86,7 +84,7 @@
     "first_registration": "2021-11-30",
     "mileage_km": "61200",
     "inspection_date": "2026-10-11",
-    "inspection_valid_until": "2027-11-28",
+    "inspection_valid_until": "2027-11-29",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
@@ -94,7 +92,7 @@
     "usage_change": "없음",
     "special_history": "없음",
     "remarks": "",
-    "split": "1-2p"
+    "split": "1-4p"
    },
    {
     "car_name": "아반떼 (세부모델: 1.6모던)",
@@ -104,30 +102,29 @@
     "first_registration": "2019-12-02",
     "mileage_km": "99800",
     "inspection_date": "2026-10-11",
-    "inspection_valid_until": "2027-12-02",
+    "inspection_valid_until": "2027-12-01",
     "accident_history": "있음",
     "simple_repair": "있음",
-    "damaged_parts": "1.후드 X, 10.크로스멤버 X, 12.사이드멤버 W",
+    "damaged_parts": "",
     "device_issues": "",
     "usage_change": "없음",
     "special_history": "없음",
     "remarks": "",
-    "split": "3-4p"
+    "split": "1-4p"
    }
   ],
   "predicted": {
    "decision_choice": "검토필요",
-   "body_decision": "검토필요",
-   "vehicle_no": "정보 부족",
-   "vin": "정보 부족",
+   "vehicle_no": "190서2234",
+   "vin": "KMHS88CLFNN166024",
    "reason_codes": [
     "R-MULTI"
    ],
-   "reason": "기록부 추출 결과가 2개이며 자동차등록번호가 **190서2234**와 **67다1408**로 다르고, 차대번호도 **KMHS88CLFNN166024**와 **KMHLVHM7ALM150990**로 서로 다릅니다. 판정 기준에 따라 기록부가 2개 이상이고 차대번호가 서로 다르면 1단계에서 **R-MULTI**로 검토필요 처리합니다."
+   "reason": "기록부 추출 결과가 2개이며 첫 번째 기록부의 차대번호는 KMHS88CLFNN166024, 두 번째 기록부의 차대번호는 KMHLVHM7ALM150990으로 서로 다릅니다. 따라서 1단계에서 R-MULTI에 해당하여 검토필요로 판단합니다."
   },
   "branch": {
    "name": "판매자_확인요청",
-   "text": "### 차량 상태 확인 요청\n차량: 싼타페 (세부모델: 2.5T 캘리그래피 ) / 190서2234, 아반떼 (세부모델: 1.6모던) / 67다1408\n확인 질문(R-MULTI): 제공된 자동차성능·상태점검기록부가 2건이며 차량등록번호와 차대번호가 서로 다릅니다. 어떤 차량이 실제 매매 대상인지, 해당 차량 기준의 점검기록부를 재확인·재발급해 주실 수 있을까요?\n안내: 차량 식별정보가 일치하는 답변과 서류를 확인하기 전에는 계약을 보류하시길 권고드립니다."
+   "text": "**차량 상태 확인 요청**\n차량: 싼타페 (세부모델: 2.5T 캘리그래피 ) / 190서2234\nR-MULTI: 한 파일에 서로 다른 차량 기록부가 섞여 있습니다. 대상 차량의 기록부를 다시 보내 주시겠습니까?\n안내: 답변 확인 전에는 계약 진행을 보류하시길 권고드립니다."
   },
   "answer": {
    "vehicle_no": "190서2234",
@@ -141,36 +138,32 @@
   "match": {
    "decision": true,
    "codes": true,
-   "vehicle_no": false,
-   "vin": false
+   "vehicle_no": true,
+   "vin": true
   },
-  "markers_removed": 12
+  "markers_removed": 8
  },
  {
   "set": "set03",
-  "doc": "DOC_14",
+  "doc": "set03",
   "case": "C",
   "pages": 3,
   "page_types": [
    {
     "split": "1-2p",
     "type": "성능·상태점검기록부"
-   },
-   {
-    "split": "3p",
-    "type": "보증범위 안내"
    }
   ],
   "extracted": [
    {
-    "car_name": "캐스퍼 (세부모델: 1.0T 인스퍼레이션)",
-    "vehicle_no": "83어5520",
+    "car_name": "캐스퍼 (세부모델: 1.0T 인스퍼레이션",
+    "vehicle_no": "283어5520",
     "vin": "KMHALN4SBPE140702",
     "model_year": "2023",
     "first_registration": "2022-09-14",
     "mileage_km": "24800",
     "inspection_date": "2026-10-19",
-    "inspection_valid_until": "2027-09-14",
+    "inspection_valid_until": "2028-09-13",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
@@ -183,18 +176,17 @@
   ],
   "predicted": {
    "decision_choice": "적합",
-   "body_decision": "적합",
-   "vehicle_no": "83어5520",
+   "vehicle_no": "283어5520",
    "vin": "KMHALN4SBPE140702",
    "reason_codes": [],
-   "reason": "기록부상 사고이력은 없음이고, 교환·판금 등 이상도 없음이며, 주요장치 불량·연료누출 있음·특별이력 있음으로 표시된 항목이 없습니다. 또한 계기상태는 양호, 차대번호 표기는 양호, 리콜은 해당없음이고, 점검일은 2026-10-19로 기준일 2026-11-05 대비 120일 이내입니다."
+   "reason": "사고이력은 없음, 단순수리는 없음, 이상 부위는 없고 주요장치 이상 항목도 없습니다. 주행거리 계기상태는 양호이고 차대번호 표기도 양호이며, 특별이력 없음·튜닝 없음·연료누출 없음으로 부적합 또는 검토필요 조건에 해당하는 값이 추출 결과에 없습니다."
   },
   "branch": {
    "name": "구매_체크시트",
-   "text": "# 구매 전 확인 체크시트\n- **차량**: 캐스퍼 (세부모델: 1.0T 인스퍼레이션), 83어5520\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 없음, 주요장치는 원동기·변속기·조향·제동·전기 항목이 전반적으로 양호로 표시됩니다.\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 KMHALN4SBPE140702 대조\n  - 계기판 주행거리 24,800km 대조\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 확인\n  - 리콜 해당없음 표시와 실제 조회 여부 확인\n- **안내**: 본 체크시트는 기록부 기준 1차 판정이며, 계약 전 실차 확인을 권장드립니다."
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 캐스퍼 (세부모델: 1.0T 인스퍼레이션), 283어5520\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 없음, 교환·판금 등 이상 부위 없음, 주요장치 이상 항목 없음\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 KMHALN4SBPE140702 일치 여부 확인\n  - 계기판 주행거리 24,800km 및 계기상태 양호 여부 확인\n  - 자동차성능·상태점검 보증기간 30일, 보증거리 2,000km 내용 확인\n  - 리콜 해당없음, 특별이력 없음, 튜닝 없음 여부 재확인\n- **안내**: 본 내용은 기록부 기준 1차 판정이며, 계약 전 실차 확인을 권장드립니다."
   },
   "answer": {
-   "vehicle_no": "83어5520",
+   "vehicle_no": "283어5520",
    "vin": "KMHALN4SBPE140702",
    "decision": "적합",
    "reason_codes": [],
@@ -206,11 +198,11 @@
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 25
+  "markers_removed": 21
  },
  {
   "set": "set04",
-  "doc": "DOC_17",
+  "doc": "set04",
   "case": "D",
   "pages": 2,
   "page_types": [
@@ -222,13 +214,13 @@
   "extracted": [
    {
     "car_name": "셀토스 (세부모델:1.6T 시그니처)",
-    "vehicle_no": "77저3954",
+    "vehicle_no": "177저3954",
     "vin": "KNAEMBDGFNM912632",
     "model_year": "2022",
     "first_registration": "2021-12-20",
     "mileage_km": "52300",
     "inspection_date": "2026-10-15",
-    "inspection_valid_until": "2027-12-20",
+    "inspection_valid_until": "2027-12-19",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
@@ -241,18 +233,17 @@
   ],
   "predicted": {
    "decision_choice": "적합",
-   "body_decision": "적합",
-   "vehicle_no": "77저3954",
+   "vehicle_no": "177저3954",
    "vin": "KNAEMBDGFNM912632",
    "reason_codes": [],
-   "reason": "기록부상 사고이력은 없음이고, 이상 부위도 기재되지 않았으며, 주행거리 계기상태 양호, 차대번호 표기 양호, 튜닝 없음, 특별이력 없음, 연료누출 없음, 주요장치 불량 항목도 확인되지 않습니다. 또한 점검일은 2026-10-15로 기준일 2026-11-05 대비 120일 이내이고, 검사유효기간 종료일은 2027-12-20으로 기준일 이후입니다."
+   "reason": "기록부 추출값 기준으로 사고이력은 없음, 단순수리는 없음, 이상 부위는 빈 목록이며 주요장치 불량 항목도 없습니다. 또한 특별이력 없음, 계기상태 양호, 차대번호 표기 양호, 튜닝 없음, 연료누출 없음으로 부적합 또는 검토필요 조건에 해당하는 값이 확인되지 않습니다."
   },
   "branch": {
    "name": "구매_체크시트",
-   "text": "# 구매 전 확인 체크시트\n- **차량**: 셀토스 (세부모델:1.6T 시그니처), 77저3954\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 부위 기재 없음, 주요장치 항목은 자기진단 원동기·변속기 양호이며, 원동기·변속기·조향·제동·전기 항목 전반에 불량 기재가 없습니다.\n- **계약 전 확인 항목**\n  - 실차 차대번호 KNAEMBDGFNM912632와 기록부 대조\n  - 계기판 주행거리 52,300km 대조\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 확인\n  - 리콜 해당없음 여부 및 자동차리콜센터 조회 확인\n- **안내**: 본 문서는 기록부 기준 1차 판정용이며, 계약 전 실차 확인을 권장드립니다."
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 셀토스(세부모델: 1.6T 시그니처), 177저3954\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 없음, 주요장치 불량 기재 없음\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 대조: KNAEMBDGFNM912632\n  - 계기판 주행거리 52,300km 일치 여부 확인\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 확인\n  - 검사유효기간 2027-12-19까지 확인\n- **안내**: 본 체크는 기록부 기준 1차 확인이며, 계약 전 실차 상태와 고지내용을 직접 확인하시길 권장드립니다."
   },
   "answer": {
-   "vehicle_no": "77저3954",
+   "vehicle_no": "177저3954",
    "vin": "KNAEMBDGFNM912632",
    "decision": "적합",
    "reason_codes": [],
@@ -264,11 +255,11 @@
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 26
+  "markers_removed": 17
  },
  {
   "set": "set05",
-  "doc": "DOC_19",
+  "doc": "set05",
   "case": "E",
   "pages": 3,
   "page_types": [
@@ -290,7 +281,7 @@
     "first_registration": "2022-03-17",
     "mileage_km": "58800",
     "inspection_date": "2026-10-03",
-    "inspection_valid_until": "2027-03-17",
+    "inspection_valid_until": "2028-03-16",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
@@ -300,24 +291,21 @@
     "remarks": "* 하부 점검 결과는 별지 참조.",
     "split": "1-2p",
     "attach_vin": "KNAC5ZNJHNL086792",
-    "attach_findings": "1. 16.플로어패널(우측 후석 하부) 부위에 용접 수리 흔적 및 실링 재도포 확인됨., 2. 사고 수리로 추정되며, 기록부 본문 ⑫ 사고이력 및 ⑬ 교환·판금 등 이상 부위 란에 기재가 누락되어 본 별지로 보완함., 3. 구동축전지 하부 보호 케이스 경미한 긁힘 확인(격리 상태 측정 결과 이상 없음)."
+    "attach_vehicle_no": "245조6719"
    }
   ],
   "predicted": {
    "decision_choice": "부적합",
-   "body_decision": "부적합",
    "vehicle_no": "245조6719",
    "vin": "KNAC5ZNJHNL086792",
    "reason_codes": [
-    "F-FRAME",
-    "F-CONTRA",
     "F-ATTACH"
    ],
-   "reason": "기록부 본문에는 사고이력이 '없음'이고 교환·판금 등 이상 부위도 '없음'으로 기재되어 있습니다. 하지만 특기사항 별지에는 주요골격에 해당하는 플로어패널(우측 후석 하부)에 용접 수리 흔적 및 실링 재도포가 확인되었고, 사고 수리로 추정되며 본문 ⑫ 사고이력 및 ⑬ 이상 부위 란 기재 누락을 별지로 보완한다고 되어 있습니다."
+   "reason": "기록부 차대번호는 KNAC5ZNJHNL086792이고 별지 차대번호도 동일하다. 별지에 플로어패널(주요골격) 우측 후석 하부의 용접 수리 흔적 및 실링 재도포가 확인되었다고 기재되어 있어 F-ATTACH에 해당한다."
   },
   "branch": {
    "name": "구매위험_안내",
-   "text": "# 구매 위험 안내\n- **차량**: EV6 (세부모델: 롱레인지 GT-Line), 245조6719\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-FRAME | ⑬ 교환·판금 등 이상 부위 | ☑없음 |\n| F-CONTRA | ⑫ 사고이력 | ☑없음 |\n| F-ATTACH | 특기사항 별지 | 16.플로어패널(우측 후석 하부) 용접 수리 흔적 및 실링 재도포, 사고 수리로 추정, 본문 ⑫·⑬ 기재 누락 보완 |\n\n- **권고**: 기록부 본문과 별지 내용이 서로 달라 구매를 보류하시고, 전문 점검을 다시 받아보시는 것을 권고드립니다."
+   "text": "# 구매 위험 안내\n- **차량:** EV6 (세부모델: 롱레인지 GT-Line), 245조6719\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-ATTACH | 본문 ⑫ 사고이력 / ⑬ 교환·판금 등 이상 부위, 별지 특기사항 | 본문: 사고이력 없음, 교환·판금 등 이상 부위 없음 / 별지: 16. 플로어패널(우측 후석 하부) 용접 수리 흔적 및 실링 재도포, 본문 기재 누락 보완 |\n\n- **권고:** 기록부 본문과 별지 사이에 사고·수리 관련 기재 불일치가 있어 구매 보류 또는 전문 점검을 권고드립니다."
   },
   "answer": {
    "vehicle_no": "245조6719",
@@ -330,15 +318,15 @@
   },
   "match": {
    "decision": true,
-   "codes": false,
+   "codes": true,
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 13
+  "markers_removed": 12
  },
  {
   "set": "set06",
-  "doc": "DOC_21",
+  "doc": "set06",
   "case": "F",
   "pages": 2,
   "page_types": [
@@ -349,14 +337,14 @@
   ],
   "extracted": [
    {
-    "car_name": "쏘나타 (세부모델: 2.0 인스퍼레이션)",
+    "car_name": "쏘나타 (세부모델: 2.0 인스퍼레이션 )",
     "vehicle_no": "342마1067",
     "vin": "KMHLG29TBPS239533",
     "model_year": "2023",
     "first_registration": "2022-07-07",
     "mileage_km": "45100",
     "inspection_date": "2026-06-10",
-    "inspection_valid_until": "2027-07-07",
+    "inspection_valid_until": "2028-07-06",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
@@ -369,18 +357,16 @@
   ],
   "predicted": {
    "decision_choice": "검토필요",
-   "body_decision": "검토필요",
    "vehicle_no": "342마1067",
    "vin": "KMHLG29TBPS239533",
    "reason_codes": [
-    "R-INSP",
     "R-OLD"
    ],
-   "reason": "검사유효기간 종료일이 2027-07-07로 기준일 2026-11-05 이전이 아니어서 R-INSP는 해당하지 않으며, 점검일은 2026-06-10으로 기준일 2026-11-05보다 120일을 초과해 이전이므로 R-OLD에 해당합니다. 부적합 사유로 볼 만한 사고이력은 없음, 특별이력 없음, 주행거리 계기상태 양호, 차대번호 표기 양호, 튜닝 없음, 주요장치 불량 없음, 연료누출 기재 없음으로 확인됩니다."
+   "reason": "점검일이 2026-06-10으로 기준일 규칙의 비교 기준인 2026-07-07 이전이므로 R-OLD에 해당합니다. 사고이력 없음, 단순수리 없음, 주요장치 이상 없음으로 부적합 사유는 확인되지 않습니다."
   },
   "branch": {
    "name": "판매자_확인요청",
-   "text": "**차량 상태 확인 요청**\n\n- **차량**: 쏘나타 (세부모델: 2.0 인스퍼레이션), 342마1067\n- **R-INSP 확인 요청**: 검사유효기간이 2027-07-07로 기재되어 있는데, 현재 판매 시점에도 동일하게 유효한지 확인 부탁드립니다.\n- **R-OLD 확인 요청**: 성능·상태점검일이 2026-06-10이므로, 발급일 기준 120일 이내 점검기록부인지와 필요 시 최신 점검기록부 재발급 가능 여부를 확인 부탁드립니다.\n- **안내**: 위 답변을 서면으로 확인하기 전에는 계약 진행을 보류하시길 권고드립니다."
+   "text": "# 차량 상태 확인 요청\n차량: 쏘나타 (세부모델: 2.0 인스퍼레이션 ) / 342마1067\nR-OLD: 점검일이 기준일로부터 120일을 넘었습니다. 최신 점검 기록부로 재점검이 가능한지 알려 주십시오.\n안내: 답변을 확인하기 전에는 계약을 보류하시길 권고드립니다."
   },
   "answer": {
    "vehicle_no": "342마1067",
@@ -393,15 +379,15 @@
   },
   "match": {
    "decision": true,
-   "codes": false,
+   "codes": true,
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 20
+  "markers_removed": 7
  },
  {
   "set": "set07",
-  "doc": "DOC_24",
+  "doc": "set07",
   "case": "G",
   "pages": 3,
   "page_types": [
@@ -423,7 +409,7 @@
     "first_registration": "2020-08-25",
     "mileage_km": "57340",
     "inspection_date": "2026-10-24",
-    "inspection_valid_until": "2027-08-25",
+    "inspection_valid_until": "2028-08-24",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
@@ -433,22 +419,22 @@
     "remarks": "",
     "split": "1-2p",
     "estimate_vin": "W1KZGWTA3ML955431",
-    "estimate_vehicle_no": "12구7405"
+    "estimate_vehicle_no": "12구7405",
+    "estimate_mileage_km": "57340"
    }
   ],
   "predicted": {
    "decision_choice": "검토필요",
-   "body_decision": "검토필요",
    "vehicle_no": "12구7405",
    "vin": "W1KZGWTA3ML922431",
    "reason_codes": [
     "R-VIN-ATTACH"
    ],
-   "reason": "기록부의 차대번호는 W1KZGWTA3ML922431인데, 견적서의 차대번호는 W1KZGWTA3ML955431로 서로 다릅니다. 사용자 기준의 3단계에 따라 별지 또는 견적서의 차대번호가 기록부 차대번호와 다르면 R-VIN-ATTACH에 해당하므로 1차 판정은 검토필요입니다."
+   "reason": "기록부 차대번호는 W1KZGWTA3ML922431인데 견적서 차대번호는 W1KZGWTA3ML955431로 서로 다르다. 기록부 추출 결과상 사고이력 없음, 단순수리 없음, 이상 부위 없음, 주요장치 이상 없음으로 부적합 사유는 확인되지 않는다."
   },
   "branch": {
    "name": "판매자_확인요청",
-   "text": "**차량 상태 확인 요청**\n- 차량: 벤츠 E250 (세부모델: 아방가르드), 12구7405\n- 확인 요청: 성능점검기록부 차대번호는 W1KZGWTA3ML922431이고 견적서 차대번호는 W1KZGWTA3ML955431로 확인됩니다. R-VIN-ATTACH 사유에 대해 어떤 문서가 맞는지 확인 부탁드립니다.\n- 안내: 위 답변과 일치하는 증빙 확인 전에는 계약 진행을 보류하시길 권고드립니다."
+   "text": "제목: 차량 상태 확인 요청\n차량: 벤츠 E250 (세부모델: 아방가르드) / 12구7405\nR-VIN-ATTACH: 별지·견적서의 차대번호가 기록부와 다릅니다. 올바른 서류를 다시 보내 주시겠습니까?\n안내: 답변과 서류를 확인하기 전에는 계약 진행을 보류하시길 권고드립니다."
   },
   "answer": {
    "vehicle_no": "12구7405",
@@ -465,11 +451,11 @@
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 14
+  "markers_removed": 7
  },
  {
   "set": "set08",
-  "doc": "DOC_25",
+  "doc": "set08",
   "case": "H",
   "pages": 2,
   "page_types": [
@@ -487,10 +473,10 @@
     "first_registration": "2020-06-11",
     "mileage_km": "78840",
     "inspection_date": "2026-10-02",
-    "inspection_valid_until": "2027-06-11",
+    "inspection_valid_until": "2028-06-10",
     "accident_history": "있음",
     "simple_repair": "있음",
-    "damaged_parts": "3.도어 X",
+    "damaged_parts": "",
     "device_issues": "",
     "usage_change": "없음",
     "special_history": "없음",
@@ -500,15 +486,14 @@
   ],
   "predicted": {
    "decision_choice": "적합",
-   "body_decision": "적합",
    "vehicle_no": "64더2915",
    "vin": "KMHLW2CXFMP251826",
    "reason_codes": [],
-   "reason": "기록부상 사고이력은 있음이며, 이상 부위는 외판 1랭크의 도어 교환으로만 확인되어 주요골격 수리, 외판 2랭크 교환, 특별이력, 계기상태 불량, 차대번호 표기 이상, 불법 튜닝, 주요장치 불량, 연료누출 등의 부적합 또는 검토필요 사유는 확인되지 않습니다. 점검일은 2026-10-02로 기준일 2026-11-05 대비 120일 이내이며, 검사유효기간 종료일도 2027-06-11로 기준일 이후입니다."
+   "reason": "사고이력은 있음이지만 이상 부위가 3.도어 X로 확인되어 주요골격 이상 없음에 해당하고, 단순수리 있음은 외판 1랭크 도어 교환으로 보이며 부적합 사유로 지정된 주요골격/외판 2랭크 교환에는 해당하지 않습니다. 또한 주요장치 불량 항목은 없고, 특별이력 없음·계기상태 양호·차대번호 표기 양호로 확인됩니다."
   },
   "branch": {
    "name": "구매_체크시트",
-   "text": "# 구매 전 확인 체크시트\n- **차량**: 쏘나타 (세부모델: 2.0 프리미엄 ), 64더2915\n- **기록부 확인 결과 요약**: 사고이력 있음, 단순수리 부위는 도어, 주요장치는 원동기·변속기 등 점검 항목이 양호로 표시되어 있습니다.\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 KMHLW2CXFMP251826 대조\n  - 계기판 주행거리 78,840km 확인\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 범위 확인\n  - 검사유효기간 2027-06-11까지인지 확인\n- **안내**: 본 체크시트는 기록부 기준 1차 판정이며, 계약 전 실차 확인을 권장드립니다."
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 쏘나타(세부모델: 2.0 프리미엄), 64더2915\n- **기록부 확인 결과 요약**: 사고이력 있음, 단순수리 부위는 도어 교환, 주요장치 점검 항목은 전반적으로 양호로 표시됩니다.\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 KMHLW2CXFMP251826 대조\n  - 계기판 주행거리 78,840km와 기록부 대조\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 확인\n  - 사고이력 및 도어 교환 부위 실차 상태 확인\n- **안내**: 본 내용은 기록부 기준 1차 판정이며, 계약 전 실차 확인을 권장드립니다."
   },
   "answer": {
    "vehicle_no": "64더2915",
@@ -523,11 +508,11 @@
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 20
+  "markers_removed": 17
  },
  {
   "set": "set09",
-  "doc": "DOC_26",
+  "doc": "set09",
   "case": "I",
   "pages": 2,
   "page_types": [
@@ -545,7 +530,7 @@
     "first_registration": "2021-09-03",
     "mileage_km": "54210",
     "inspection_date": "2026-09-22",
-    "inspection_valid_until": "2027-09-03",
+    "inspection_valid_until": "2027-09-02",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
@@ -558,17 +543,14 @@
   ],
   "predicted": {
    "decision_choice": "적합",
-   "body_decision": "검토필요",
    "vehicle_no": "152모8830",
    "vin": "KMHJA46AGNL775422",
-   "reason_codes": [
-    "R-OLD"
-   ],
-   "reason": "점검일은 2026-09-22로 확인되며, 판정 기준일 2026-11-05보다 120일을 넘게 이전이라는 조건에는 해당하지 않습니다. 다만 문서상 부적합 사유(사고이력 없음, 단순수리 없음, 특별이력 없음, 주요장치 불량 없음, 연료누출 없음)는 확인되지 않아 1차 판정은 검토필요가 아니라 적합으로 보는 것이 문서 기준에 부합합니다."
+   "reason_codes": [],
+   "reason": "추출 결과 기준으로 사고이력은 없음, 단순수리는 없음이며 이상 부위와 주요장치 이상도 없어 부적합 또는 검토필요 코드에 해당하는 근거가 없습니다. 검사유효기간은 2027-09-02로 기준일 2026-11-05 이후이고, 점검일은 2026-09-22입니다."
   },
   "branch": {
    "name": "구매_체크시트",
-   "text": "# 구매 전 확인 체크시트\n- **차량**: 투싼 (세부모델: 1.6T 인스퍼레이션), 152모8830\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 부위 없음, 주요장치 점검상 양호로 확인됩니다.\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호(KMHJA46AGNL775422) 일치 여부를 확인하세요.\n  - 계기판 주행거리 54,210km와 기록부 기재값 일치 여부를 확인하세요.\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 적용 내용을 확인하세요.\n  - 점검일 2026-09-22 기준 발급 기록부인지 확인하세요.\n- **안내**: 본 체크는 기록부 기준 1차 판정이며, 계약 전 실차 확인을 권장드립니다."
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 투싼 (세부모델: 1.6T 인스퍼레이션 ), 152모8830\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 없음, 주요장치 이상 기재 없음\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 KMHJA46AGNL775422 대조\n  - 계기판 주행거리와 기록부 54,210km 대조\n  - 성능·상태점검일 2026-09-22 및 검사유효기간 2027-09-02까지 확인\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 적용 내용 확인\n- **안내**: 본 체크는 기록부 기준 1차 판정이며, 계약 전 실차 상태를 직접 확인하시길 권장드립니다."
   },
   "answer": {
    "vehicle_no": "152모8830",
@@ -579,15 +561,15 @@
   },
   "match": {
    "decision": true,
-   "codes": false,
+   "codes": true,
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 23
+  "markers_removed": 18
  },
  {
   "set": "set10",
-  "doc": "DOC_28",
+  "doc": "set10",
   "case": "J",
   "pages": 2,
   "page_types": [
@@ -598,14 +580,14 @@
   ],
   "extracted": [
    {
-    "car_name": "그랜저 (세부모델: 2.5 캘리그래피)",
+    "car_name": "그랜저 (세부모델: 2.5 캘리그래피 )",
     "vehicle_no": "166도4481",
     "vin": "KMHRYXCKAPJ191556",
     "model_year": "2023",
     "first_registration": "2022-12-02",
     "mileage_km": "29700",
     "inspection_date": "2026-10-28",
-    "inspection_valid_until": "2027-12-02",
+    "inspection_valid_until": "2026-12-01",
     "accident_history": "없음",
     "simple_repair": "없음",
     "damaged_parts": "",
@@ -618,15 +600,14 @@
   ],
   "predicted": {
    "decision_choice": "적합",
-   "body_decision": "적합",
    "vehicle_no": "166도4481",
    "vin": "KMHRYXCKAPJ191556",
    "reason_codes": [],
-   "reason": "기록부상 사고이력은 없음이고, 주요골격은 없음이며, 주행거리 계기상태는 양호, 차대번호 표기는 양호, 튜닝 없음, 특별이력 없음, 용도변경 없음, 리콜 해당없음으로 확인됩니다. 또한 주요장치 추출 결과에 불량 항목이 없고, 연료누출은 없음으로 표시되어 있어 제시된 판정 기준상 부적합·검토필요 사유가 확인되지 않습니다."
+   "reason": "추출 결과 기준으로 사고이력은 없음, 단순수리는 없음이며 이상 부위(damaged_parts)와 주요장치 이상(device_issues)도 없습니다. 또한 계기상태는 양호, 차대번호 표기는 양호, 특별이력 없음, 튜닝 없음, 용도변경 없음, 리콜 해당없음이고 검사유효기간은 2026-12-01, 점검일은 2026-10-28입니다."
   },
   "branch": {
    "name": "구매_체크시트",
-   "text": "# 구매 전 확인 체크시트\n- **차량**: 그랜저 (세부모델: 2.5 캘리그래피), 166도4481\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 부위 기재 없음, 주요장치 추출상 불량 항목 없음\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 `KMHRYXCKAPJ191556` 대조\n  - 실차 주행거리와 기록부 `29,700km` 대조\n  - 성능·상태점검 보증기간 `30일`, 보증거리 `2,000km` 확인\n  - 자동차가격조사·산정 선택 기록 및 발급일 `2026-10-28` 확인\n- **안내**: 본 체크시트는 기록부 기준 1차 판정이며, 앞선 판정 결과는 적합입니다. 계약 전 실차 상태를 직접 확인하시길 권장드립니다."
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 그랜저(세부모델: 2.5 캘리그래피), 166도4481\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 부위 없음, 주요장치 이상 없음\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 KMHRYXCKAPJ191556 대조\n  - 계기판 주행거리 29,700km 및 계기상태 양호 여부 확인\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 확인\n  - 검사유효기간 2026-12-01 및 점검일 2026-10-28 확인\n- **안내**: 본 체크시트는 기록부 기준 1차 판정이며, 계약 전 실차 확인을 권장드립니다."
   },
   "answer": {
    "vehicle_no": "166도4481",
@@ -641,6 +622,1335 @@
    "vehicle_no": true,
    "vin": true
   },
-  "markers_removed": 28
+  "markers_removed": 18
+ },
+ {
+  "set": "set11",
+  "doc": "set11",
+  "case": "K",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "쏘렌토 (세부모델: 2.5T 노블레스)",
+    "vehicle_no": "62수7140",
+    "vin": "KNAPCB1XFMA762250",
+    "model_year": "2021",
+    "first_registration": "2021-03-09",
+    "mileage_km": "73400",
+    "inspection_date": "2026-10-16",
+    "inspection_valid_until": "2027-03-08",
+    "accident_history": "없음",
+    "simple_repair": "있음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "62수7140",
+   "vin": "KNAPCB1XFMA762250",
+   "reason_codes": [
+    "F-FRAME",
+    "F-CONTRA"
+   ],
+   "reason": "damaged_parts에 프론트펜더 X와 사이드멤버 W가 있어 주요골격인 사이드멤버에 판금 또는 용접 이력이 확인되므로 F-FRAME입니다. accident_history는 없음인데 damaged_parts에 주요골격 수리 부위가 함께 있어 F-CONTRA에 해당합니다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n- **차량**: 쏘렌토 (세부모델: 2.5T 노블레스), 62수7140\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-FRAME | ⑫ ⑬ 교환, 판금 등 이상 > 주요골격 > B랭크 | 12.사이드멤버 W |\n| F-CONTRA | 사고이력 / ⑫ ⑬ 교환, 판금 등 이상 | 사고이력 없음, 주요골격 사이드멤버 W |\n\n- **권고**: 주요골격 수리 이력과 사고이력 기재 간 불일치가 확인되므로 구매 보류 또는 전문 점검을 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "62수7140",
+   "vin": "KNAPCB1XFMA762250",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-FRAME",
+    "F-CONTRA"
+   ],
+   "reason": "⑬ 12.사이드멤버(좌전) 판금/용접(주요골격)이 표시되어 있으나 ⑫ 사고이력은 '없음'으로 적혀 서로 모순됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 12
+ },
+ {
+  "set": "set12",
+  "doc": "set12",
+  "case": "L",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "아반떼 (세부모델: 1.6 인스퍼레이션 )",
+    "vehicle_no": "233누9182",
+    "vin": "KMHLKT60CML510900",
+    "model_year": "2021",
+    "first_registration": "2020-10-22",
+    "mileage_km": "69300",
+    "inspection_date": "2026-10-01",
+    "inspection_valid_until": "2028-10-21",
+    "accident_history": "없음",
+    "simple_repair": "있음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "검토필요",
+   "vehicle_no": "233누9182",
+   "vin": "KMHLKT60CML510900",
+   "reason_codes": [
+    "R-INSP"
+   ],
+   "reason": "검사유효기간이 2028-10-21로 기준일 2026-11-05 이후이므로 R-INSP는 해당하지 않지만, 점검일은 2026-10-01로 2026-07-07 이전이 아니어서 R-OLD도 해당하지 않습니다. 문서 추출값상 사고이력은 없음, 단순수리는 있음, 이상 부위는 외판 1랭크(후드, 프론트펜더, 도어, 트렁크리드, 라디에이터서포트)만 있으며 주요장치 이상은 없어 부적합 사유는 확인되지 않습니다."
+  },
+  "branch": {
+   "name": "판매자_확인요청",
+   "text": "**차량 상태 확인 요청**\n\n**차량**: 아반떼 (세부모델: 1.6 인스퍼레이션 ) / 233누9182\n\n사유 코드 **R-INSP** 관련하여, 검사유효기간이 기준일 전에 만료되었습니다. 검사 일정과 비용 부담을 알려 주십시오.\n\n답변을 확인하기 전까지는 계약 진행을 보류하시는 것을 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "233누9182",
+   "vin": "KMHLKT60CML510900",
+   "decision": "적합",
+   "reason_codes": [],
+   "reason": "⑬ 후드·펜더·도어·트렁크 리드·라디에이터서포트의 교환/판금은 모두 1랭크 외판 단순수리로 주요골격이 아니며, 그 밖의 판정 사유가 없음."
+  },
+  "match": {
+   "decision": false,
+   "codes": false,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 12
+ },
+ {
+  "set": "set13",
+  "doc": "set13",
+  "case": "M",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "모닝 (세부모델: 1.0 럭셔리)",
+    "vehicle_no": "45버2763",
+    "vin": "KNABM4GWDFL785350",
+    "model_year": "2015",
+    "first_registration": "2015-04-16",
+    "mileage_km": "9200",
+    "inspection_date": "2026-10-22",
+    "inspection_valid_until": "2027-04-15",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "검토필요",
+   "vehicle_no": "45버2763",
+   "vin": "KNABM4GWDFL785350",
+   "reason_codes": [
+    "R-LOWKM"
+   ],
+   "reason": "최초등록일이 2015-04-16이고 현재 주행거리가 9,200km이어서 기준일 2026-11-05 대비 연평균 2,000km 미만 조건에 해당합니다."
+  },
+  "branch": {
+   "name": "판매자_확인요청",
+   "text": "**차량 상태 확인 요청**\n차량: 모닝 (세부모델: 1.0 럭셔리) / 45버2763\nR-LOWKM: 연평균 주행거리가 매우 낮습니다. 주행거리 이력 증빙을 제출해 주십시오.\n안내: 답변과 증빙을 확인하기 전에는 계약 진행을 보류하시길 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "45버2763",
+   "vin": "KNABM4GWDFL785350",
+   "decision": "검토필요",
+   "reason_codes": [
+    "R-LOWKM"
+   ],
+   "reason": "③ 연식 2015년 차량의 현재 주행거리가 9,200km로 연평균 약 796km에 그쳐 기준(연 2,000km)보다 적음."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 8
+ },
+ {
+  "set": "set14",
+  "doc": "set14",
+  "case": "N",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "그랜저 (세부모델: 3.0 익스클루시브)",
+    "vehicle_no": "197고3041",
+    "vin": "KMHFKHPNFKM399071",
+    "model_year": "2019",
+    "first_registration": "2018-12-04",
+    "mileage_km": "48310",
+    "inspection_date": "2026-10-08",
+    "inspection_valid_until": "2026-12-03",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "* 현재 주행거리(48,310km)가 자동차관리정보시스템 주행거리(112,540km, 2024-05 정기검사)보다 적음.",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "197고3041",
+   "vin": "KMHFKHPNFKM399071",
+   "reason_codes": [
+    "F-REMARK-KM"
+   ],
+   "reason": "특기사항에 현재 주행거리 48,310km가 자동차관리정보시스템 주행거리 112,540km(2024-05 정기검사)보다 적다고 기재되어 있어 F-REMARK-KM에 해당한다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n\n- **차량**: 그랜저 (세부모델: 3.0 익스클루시브), 197고3041\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-REMARK-KM | ⑮ 특기사항 및 점검자의 의견 | 현재 주행거리 48,310km가 자동차관리정보시스템 주행거리 112,540km(2024-05 정기검사)보다 적음 |\n\n- **권고**: 구매를 보류하시고, 주행거리 이력과 계기 관련 사항에 대해 전문 점검을 받으시는 것을 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "197고3041",
+   "vin": "KMHFKHPNFKM399071",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-REMARK-KM"
+   ],
+   "reason": "⑮ 특기사항에 현재 주행거리(48,310km)가 자동차관리정보시스템 주행거리(112,540km)보다 적다고 기재됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 11
+ },
+ {
+  "set": "set15",
+  "doc": "set15",
+  "case": "O",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "K8 (세부모델: 2.5 노블레스)",
+    "vehicle_no": "319거8126",
+    "vin": "KNAL35PEDNJ367829",
+    "model_year": "2022",
+    "first_registration": "2021-10-29",
+    "mileage_km": "58700",
+    "inspection_date": "2026-10-27",
+    "inspection_valid_until": "2027-10-28",
+    "accident_history": "없음",
+    "simple_repair": "있음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "검토필요",
+   "vehicle_no": "319거8126",
+   "vin": "KNAL35PEDNJ367829",
+   "reason_codes": [
+    "R-RECALL"
+   ],
+   "reason": "기록부 추출 결과에서 리콜이 해당(미이행)으로 확인되어 검토가 필요하다. 사고이력은 없음이고 주요장치 이상(device_issues)도 없어 부적합 사유는 확인되지 않았다."
+  },
+  "branch": {
+   "name": "판매자_확인요청",
+   "text": "### 차량 상태 확인 요청\n차량: K8 (세부모델: 2.5 노블레스) / 319거8126\n리콜 미이행 항목의 이행 계획과 비용 부담을 알려 주십시오.\n안내: 위 답변을 확인하기 전에는 계약 진행을 보류하시는 것을 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "319거8126",
+   "vin": "KNAL35PEDNJ367829",
+   "decision": "검토필요",
+   "reason_codes": [
+    "R-RECALL"
+   ],
+   "reason": "⑪ 사용이력의 리콜대상이 '해당(미이행)'으로 표시됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 7
+ },
+ {
+  "set": "set16",
+  "doc": "set16",
+  "case": "P",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "렉스턴 스포츠 (세부모델:2.2칸)",
+    "vehicle_no": "81누6620",
+    "vin": "KPTG8NVHBMA411414",
+    "model_year": "2021",
+    "first_registration": "2020-07-15",
+    "mileage_km": "86200",
+    "inspection_date": "2026-10-10",
+    "inspection_valid_until": "2027-07-14",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "* 서스펜션 리프트업으로 차체 높이 변경, 구조변경 승인 내역 없음.",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "81누6620",
+   "vin": "KPTG8NVHBMA411414",
+   "reason_codes": [
+    "F-TUNING"
+   ],
+   "reason": "기록부 추출 결과에서 튜닝이 불법(구조)으로 확인되어 부적합이다. 사고이력은 없음이고 이상 부위와 주요장치 불량도 추출되지 않아, 본 1차 판정의 부적합 사유는 F-TUNING만 해당한다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n- **차량:** 렉스턴 스포츠 (세부모델:2.2칸) / 81누6620\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-TUNING | 튜닝 | 있음, 불법, 구조 |\n\n- **권고:** 불법 구조 튜닝으로 판정된 차량이므로 구매는 우선 보류하시고, 구조변경 승인 여부와 원상복구 필요성을 전문 점검으로 확인하시길 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "81누6620",
+   "vin": "KPTG8NVHBMA411414",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-TUNING"
+   ],
+   "reason": "⑪ 튜닝이 '불법(구조)'로 표시되고, ⑮ 특기사항에 구조변경 승인 내역이 없다고 적혀 있음."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 12
+ },
+ {
+  "set": "set17",
+  "doc": "set17",
+  "case": "Q",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "아반떼 (세부모델: 1.6 스마트)",
+    "vehicle_no": "172도5813",
+    "vin": "KMHL98FWBKP788674",
+    "model_year": "2022",
+    "first_registration": "2021-12-09",
+    "mileage_km": "47600",
+    "inspection_date": "2026-10-23",
+    "inspection_valid_until": "2027-12-08",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "적합",
+   "vehicle_no": "172도5813",
+   "vin": "KMHL98FWBKP788674",
+   "reason_codes": [],
+   "reason": "추출 결과 기준으로 사고이력은 없음, 단순수리는 없음, 이상 부위는 빈 목록, 주요장치 이상도 빈 목록이며 주행거리 계기상태와 차대번호 표기도 모두 양호입니다. 또한 검사유효기간은 2027-12-08로 기준일 2026-11-05 이후이고, 점검일은 2026-10-23으로 오래된 점검 기준에도 해당하지 않습니다."
+  },
+  "branch": {
+   "name": "구매_체크시트",
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 아반떼 (세부모델: 1.6 스마트) / 172도5813\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 없음, 주요장치 이상 없음으로 확인됩니다.\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 KMHL98FWBKP788674 대조\n  - 실주행거리 47,600km 및 계기상태 양호 여부 확인\n  - 성능·상태점검 보증범위와 보증기간 30일, 보증거리 2,000km 확인\n  - 검사유효기간 2027-12-08 및 점검일 2026-10-23 확인\n  - 리콜 해당없음 여부 확인\n- **안내**: 본 내용은 기록부 기준 1차 판정이며, 계약 전 실차 확인을 권장드립니다."
+  },
+  "answer": {
+   "vehicle_no": "172도5813",
+   "vin": "KMHL98FWBKP788674",
+   "decision": "검토필요",
+   "reason_codes": [
+    "R-VIN-YEAR"
+   ],
+   "reason": "차대번호 10번째 자리 'K'(2019년 코드)가 ③ 연식 2022년 코드('N')와 다름."
+  },
+  "match": {
+   "decision": false,
+   "codes": false,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 26
+ },
+ {
+  "set": "set18",
+  "doc": "set18",
+  "case": "R",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "스포티지 (세부모델: 2.0 프레스티지 )",
+    "vehicle_no": "148호2076",
+    "vin": "KNAP90DYFHG866711",
+    "model_year": "2021",
+    "first_registration": "2021-02-18",
+    "mileage_km": "88400",
+    "inspection_date": "2026-10-26",
+    "inspection_valid_until": "2027-02-17",
+    "accident_history": "있음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "렌트",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "검토필요",
+   "vehicle_no": "148호2076",
+   "vin": "KNAP90DYFHG866711",
+   "reason_codes": [
+    "R-USAGE"
+   ],
+   "reason": "용도변경 값이 렌트로 추출되어 있어 R-USAGE에 해당한다. 사고이력은 있음이지만 이상 부위로 도어 교환이 함께 추출되어 R-ACC-NOPART에는 해당하지 않는다."
+  },
+  "branch": {
+   "name": "판매자_확인요청",
+   "text": "### 차량 상태 확인 요청\n차량: 스포티지 (세부모델: 2.0 프레스티지 ) / 148호2076\n\n용도변경이 렌트로 표시되어 있습니다. 렌트 사용 기간과 이력을 알려 주시겠습니까?\n\n답변을 확인하기 전까지는 계약을 보류하시길 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "148호2076",
+   "vin": "KNAP90DYFHG866711",
+   "decision": "검토필요",
+   "reason_codes": [
+    "R-USAGE",
+    "R-VIN-YEAR"
+   ],
+   "reason": "⑪ 용도변경이 '렌트'로 표시되고, 차대번호 10번째 자리 'H'가 ③ 연식 2021년 코드('M')와 다름."
+  },
+  "match": {
+   "decision": true,
+   "codes": false,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 7
+ },
+ {
+  "set": "set19",
+  "doc": "set19",
+  "case": "S",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "트레일블레이저 (세부모델:1.3TRS)",
+    "vehicle_no": "209무4413",
+    "vin": "KL1TJNSECNB500048",
+    "model_year": "2022",
+    "first_registration": "2021-05-31",
+    "mileage_km": "63900",
+    "inspection_date": "2026-10-13",
+    "inspection_valid_until": "2027-05-30",
+    "accident_history": "",
+    "simple_repair": "",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "검토필요",
+   "vehicle_no": "209무4413",
+   "vin": "KL1TJNSECNB500048",
+   "reason_codes": [
+    "R-UNREADABLE"
+   ],
+   "reason": "unreadable_fields에 accident_history와 simple_repair가 포함되어 있어 사고이력·단순수리 핵심 항목을 판독할 수 없으므로, 규칙 1단계에 따라 추정 없이 검토필요로 판단한다."
+  },
+  "branch": {
+   "name": "판매자_확인요청",
+   "text": "# 차량 상태 확인 요청\n차량: 트레일블레이저 (세부모델:1.3TRS) / 209무4413\n판독이 안 되는 칸이 있습니다. 해당 칸이 선명한 기록부를 재발급해 주시겠습니까?\n안내: 사고이력·단순수리 관련 판독이 어려워 확인이 필요하므로, 답변 확인 전에는 계약을 보류하시길 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "209무4413",
+   "vin": "KL1TJNSECNB500048",
+   "decision": "검토필요",
+   "reason_codes": [
+    "R-UNREADABLE"
+   ],
+   "reason": "얼룩이 사고·교환 이력 칸을 가려 ⑫·⑬ 내용을 읽을 수 없어 판정에 필요한 내용을 확인할 수 없음."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 6
+ },
+ {
+  "set": "set20",
+  "doc": "set20",
+  "case": "T",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "포터2 (세부모델: 2.5 슈퍼캡 초장축)",
+    "vehicle_no": "93보1185",
+    "vin": "KMFZ89DMALJ928764",
+    "model_year": "2020",
+    "first_registration": "2019-11-12",
+    "mileage_km": "142300",
+    "inspection_date": "2026-09-15",
+    "inspection_valid_until": "2026-11-11",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "* 클러치 미끄러짐, 디스크 마모 심함.",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "93보1185",
+   "vin": "KMFZ89DMALJ928764",
+   "reason_codes": [
+    "F-DEVICE"
+   ],
+   "reason": "주요장치 항목인 device_issues에 클러치 어셈블리: 불량이 기재되어 있어 F-DEVICE에 해당합니다. 특기사항에도 클러치 미끄러짐, 디스크 마모 심함이라고 적혀 있으나, 이미 주요장치 불량이 표시된 항목이므로 F-REMARK로 다시 적지 않습니다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n\n- **차량**: 포터2 (세부모델: 2.5 슈퍼캡 초장축), 93보1185\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-DEVICE | 동력전달 > 클러치 어셈블리 | 불량 |\n\n- **권고**: 구매를 보류하시고, 클러치 미끄러짐 및 디스크 마모 상태에 대해 전문 점검을 먼저 받으시기 바랍니다."
+  },
+  "answer": {
+   "vehicle_no": "93보1185",
+   "vin": "KMFZ89DMALJ928764",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-DEVICE"
+   ],
+   "reason": "⑭ 주요장치 중 동력전달 클러치 어셈블리가 '불량'으로 표시됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 12
+ },
+ {
+  "set": "set21",
+  "doc": "set21",
+  "case": "U",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "카니발 (세부모델: 3.5 시그니처 )",
+    "vehicle_no": "301보6644",
+    "vin": "KNAN7NRBANJ916328",
+    "model_year": "2022",
+    "first_registration": "2021-10-08",
+    "mileage_km": "96500",
+    "inspection_date": "2026-10-09",
+    "inspection_valid_until": "2027-10-07",
+    "accident_history": "있음",
+    "simple_repair": "있음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "301보6644",
+   "vin": "KNAN7NRBANJ916328",
+   "reason_codes": [
+    "F-FRAME"
+   ],
+   "reason": "accident_history가 있음이고 damaged_parts에 주요골격인 트렁크플로어와 리어패널이 포함되어 있어, 주요골격에 이상 부위가 있는 것으로 판단됩니다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n- **차량**: 카니발 (세부모델: 3.5 시그니처 ), 301보6644\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-FRAME | ⑫ 사고이력 / ⑬ 교환, 판금 등 이상 | 사고이력: 있음, 단순수리 부위: 있음, 17.트렁크플로어, 18.리어패널 |\n\n- **권고**: 구매 보류를 권고드립니다. 주요 골격 관련 기재가 있어 계약 전 전문 점검을 다시 받으시는 것이 좋습니다."
+  },
+  "answer": {
+   "vehicle_no": "301보6644",
+   "vin": "KNAN7NRBANJ916328",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-FRAME"
+   ],
+   "reason": "⑬ 18.리어패널 교환과 17.트렁크플로어 판금/용접이 주요골격 손상으로 표시됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 13
+ },
+ {
+  "set": "set22",
+  "doc": "set22",
+  "case": "V",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "K5 (세부모델: 2.0 노블레스)",
+    "vehicle_no": "126허7713",
+    "vin": "KNAGNJKFDNP235822",
+    "model_year": "2022",
+    "first_registration": "2021-08-06",
+    "mileage_km": "82570",
+    "inspection_date": "2026-08-18",
+    "inspection_valid_until": "2027-08-05",
+    "accident_history": "없음",
+    "simple_repair": "있음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "렌트",
+    "special_history": "없음",
+    "remarks": "* 엔진 프론트케이스 오일누유.",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "검토필요",
+   "vehicle_no": "126허7713",
+   "vin": "KNAGNJKFDNP235822",
+   "reason_codes": [
+    "R-RANK2W",
+    "R-LEAK",
+    "R-USAGE"
+   ],
+   "reason": "damaged_parts에 6.쿼터패널 W가 있어 외판 2랭크 판금/용접에 해당하고, device_issues에 원동기 오일 누유 실린더 헤드 / 개스킷: 누유가 기재되어 있으며, usage_change가 렌트로 확인됩니다."
+  },
+  "branch": {
+   "name": "판매자_확인요청",
+   "text": "문서 인용 표시를 붙이지 말라는 요청과, 답변 본문에 모든 사실마다 인용 표시를 반드시 넣어야 한다는 상위 지침이 충돌합니다. 상위 지침에 따라 인용 표시가 필요한데, 사용자 요청 형식을 그대로는 충족할 수 없습니다. \n\n## 요청문\n**차량 상태 확인 요청**\n차량: K5 (세부모델: 2.0 노블레스), 126허7713\n외판 2랭크(쿼터패널·루프패널·사이드실패널)의 판금·용접 부위가 절단·용접을 수반하는지 확인해 주십시오.\n누유·누수 부위와 수리 여부를 알려 주십시오.\n용도변경(렌트·영업용) 사용 기간과 이력을 알려 주십시오.\n답변 확인 전에는 계약을 보류하시길 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "126허7713",
+   "vin": "KNAGNJKFDNP235822",
+   "decision": "검토필요",
+   "reason_codes": [
+    "R-RANK2W",
+    "R-LEAK",
+    "R-USAGE"
+   ],
+   "reason": "⑪ 용도변경이 '렌트'로 표시되고, ⑬ 6.쿼터패널(리어펜더)(우)에 판금/용접이 있으며, ⑭ 원동기 실린더 헤드/개스킷이 '누유'로 표시됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 13
+ },
+ {
+  "set": "set23",
+  "doc": "set23",
+  "case": "W",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "니로 (세부모델: 1.6 HEV 시그니처 )",
+    "vehicle_no": "221누0396",
+    "vin": "KNACVMZPFPU688167",
+    "model_year": "2023",
+    "first_registration": "2023-01-27",
+    "mileage_km": "36420",
+    "inspection_date": "2026-10-25",
+    "inspection_valid_until": "2027-01-26",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "적합",
+   "vehicle_no": "221누0396",
+   "vin": "KNACVMZPFPU688167",
+   "reason_codes": [],
+   "reason": "사고이력은 없음이고, 단순수리도 없음이며, 이상 부위도 없고, 주요장치 이슈는 원동기 실린더 커버 오일의 미세누유 1건뿐이라 부적합·검토필요 사유에 해당하지 않습니다. 또한 검사유효기간은 2027-01-26으로 기준일 2026-11-05 이후이고, 점검일은 2026-10-25로 R-OLD 조건에 해당하지 않습니다."
+  },
+  "branch": {
+   "name": "구매_체크시트",
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 니로(1.6 HEV 시그니처), 221누0396\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 없음, 주요장치 특이사항은 원동기 실린더 커버(로커암 커버) 오일 미세누유 1건입니다.\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 일치 여부 확인: KNACVMZPFPU688167\n  - 계기 주행거리와 기록부 주행거리 대조: 36,420km\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 확인\n  - 검사유효기간 확인: 2027-01-26까지\n- **안내**: 본 체크시트는 자동차성능·상태점검기록부 기준의 1차 판단이며, 계약 전 실차 확인을 권장드립니다."
+  },
+  "answer": {
+   "vehicle_no": "221누0396",
+   "vin": "KNACVMZPFPU688167",
+   "decision": "적합",
+   "reason_codes": [],
+   "reason": "⑭ 원동기 실린더 커버(로커암 커버)의 '미세누유'는 판정 사유가 아니며, 그 밖의 부적합·검토필요 사유가 없음."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 21
+ },
+ {
+  "set": "set24",
+  "doc": "set24",
+  "case": "X",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "아반떼 (세부모델: 1.6 스마트)",
+    "vehicle_no": "38나4172",
+    "vin": "KMHLR81XCPP889545",
+    "model_year": "2023",
+    "first_registration": "2022-11-21",
+    "mileage_km": "31450",
+    "inspection_date": "2026-10-14",
+    "inspection_valid_until": "2026-11-20",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "적합",
+   "vehicle_no": "38나4172",
+   "vin": "KMHLR81XCPP889545",
+   "reason_codes": [],
+   "reason": "추출 결과 기준으로 사고이력은 없음, 단순수리는 없음이며 이상 부위(damaged_parts)와 주요장치 불량(device_issues)도 없습니다. 또한 특별이력 없음, 주행거리 계기상태 양호, 차대번호 표기 양호, 튜닝 없음, 리콜 해당없음, 검사유효기간 2026-11-20, 점검일 2026-10-14로 제시된 규칙상 부적합 또는 검토필요 사유가 확인되지 않습니다."
+  },
+  "branch": {
+   "name": "구매_체크시트",
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 아반떼 (세부모델: 1.6 스마트), 38나4172\n- **기록부 확인 결과 요약**: 사고이력 없음, 단순수리 없음, 주요장치 이상 없음으로 확인됩니다.\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 KMHLR81XCPP889545 대조\n  - 실주행거리와 기록부 31,450km 대조\n  - 성능·상태점검 보증기간 30일, 보증거리 2,000km 확인\n  - 리콜 해당없음 여부와 점검일 2026-10-14 확인\n- **안내**: 본 체크는 기록부 기준 1차 확인이며, 계약 전 실차 상태 확인을 권장드립니다."
+  },
+  "answer": {
+   "vehicle_no": "38나4172",
+   "vin": "KMHLR81XCPP889545",
+   "decision": "적합",
+   "reason_codes": [],
+   "reason": "기록부에서 부적합·검토필요 사유가 확인되지 않음."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 17
+ },
+ {
+  "set": "set25",
+  "doc": "set25",
+  "case": "Y",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "쏘렌토 (세부모델: 2.2 디젤 시그니처)",
+    "vehicle_no": "274거3360",
+    "vin": "KNAP2ZYKDMS739747",
+    "model_year": "2021",
+    "first_registration": "2020-05-22",
+    "mileage_km": "104300",
+    "inspection_date": "2026-10-06",
+    "inspection_valid_until": "2028-05-21",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "* 시운전 중 D→R변속 시 충격 및 3→4단 변속 지연·미끄러짐(슬립) 현상 확인. * 자동변속기 작동 불량으로 판단되며 수리 후 출고를 권장함.",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "274거3360",
+   "vin": "KNAP2ZYKDMS739747",
+   "reason_codes": [
+    "F-DEVICE"
+   ],
+   "reason": "주요장치 추출 결과에 변속기 작동상태(공회전): 불량이 포함되어 있어 주요장치 불량에 해당합니다. 특기사항에도 자동변속기 작동 불량으로 판단되며 수리 후 출고 권장이라고 기재되어 있으나, 이는 이미 주요장치 불량이 추출되어 있으므로 F-REMARK로는 다시 적지 않습니다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n- **차량:** 쏘렌토 (세부모델: 2.2 디젤 시그니처) / 274거3360\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-DEVICE | 변속기 작동상태(공회전) | 불량 |\n\n- **권고:** 구매를 보류하시고, 변속기 관련 전문 점검 및 수리 여부를 먼저 확인하시기 바랍니다."
+  },
+  "answer": {
+   "vehicle_no": "274거3360",
+   "vin": "KNAP2ZYKDMS739747",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-REMARK"
+   ],
+   "reason": "⑮ 특기사항에 자동변속기 변속 충격·슬립(작동 불량)이 적혀 있어, 변속기 '양호' 표시와 서로 맞지 않음."
+  },
+  "match": {
+   "decision": true,
+   "codes": false,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 12
+ },
+ {
+  "set": "set26",
+  "doc": "set26",
+  "case": "Z",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "아이오닉5 (세부모델: 롱레인지 AWD )",
+    "vehicle_no": "157더2048",
+    "vin": "KMHKNZH5FPS753908",
+    "model_year": "2023",
+    "first_registration": "2022-10-05",
+    "mileage_km": "38760",
+    "inspection_date": "2026-10-12",
+    "inspection_valid_until": "2028-10-04",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "적합",
+   "vehicle_no": "157더2048",
+   "vin": "KMHKNZH5FPS753908",
+   "reason_codes": [],
+   "reason": "추출 결과상 사고이력은 없음, 단순수리는 없음, 이상 부위 목록은 비어 있으며 주요장치 불량 항목도 없습니다. 또한 특별이력 없음, 주행거리 계기상태 양호, 차대번호 표기 양호, 튜닝 없음, 용도변경 없음, 리콜 해당없음으로 부적합·검토필요 조건에 해당하는 값이 확인되지 않습니다."
+  },
+  "branch": {
+   "name": "구매_체크시트",
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 아이오닉5 (세부모델: 롱레인지 AWD ), 157더2048\n- **기록부 확인 결과 요약**: 사고이력 없음, 교환·판금 등 이상 부위 없음, 주요장치 점검상 특이 불량 기재 없음\n- **계약 전 확인 항목**\n  - 실차 차대번호와 기록부 차대번호 일치 확인: KMHKNZH5FPS753908\n  - 계기판 주행거리 38,760km 대조\n  - 자동차성능·상태점검 보증기간 30일, 보증거리 2,000km 범위 확인\n  - 리콜 해당없음 및 튜닝·특별이력·용도변경 없음 재확인\n- **안내**: 본 체크는 기록부 기준 1차 판정이며, 계약 전 실차 상태와 고지 내용의 직접 확인을 권장드립니다."
+  },
+  "answer": {
+   "vehicle_no": "157더2048",
+   "vin": "KMHKNZH5FPS753908",
+   "decision": "적합",
+   "reason_codes": [],
+   "reason": "전기차 양식의 고전원 항목을 포함해 기록부에서 부적합·검토필요 사유가 확인되지 않음."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 20
+ },
+ {
+  "set": "set27",
+  "doc": "set27",
+  "case": "AA",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "",
+    "vehicle_no": "",
+    "vin": "",
+    "model_year": "",
+    "first_registration": "",
+    "mileage_km": "0",
+    "inspection_date": "",
+    "inspection_valid_until": "",
+    "accident_history": "",
+    "simple_repair": "",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "",
+    "special_history": "",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "검토필요",
+   "vehicle_no": "",
+   "vin": "",
+   "reason_codes": [
+    "R-UNREADABLE"
+   ],
+   "reason": "unreadable_fields에 차대번호(vin), 사고이력(accident_history), 단순수리(simple_repair)가 포함되어 있고, 이상 부위 판단에 필요한 damaged_parts도 비어 있어 핵심 칸을 판독할 수 없어 1단계 R-UNREADABLE에 해당합니다."
+  },
+  "branch": {
+   "name": "판매자_확인요청",
+   "text": "**제목:** 차량 상태 확인 요청\n**차량:** 차명 확인 불가 / 등록번호 확인 불가\n**확인 요청:** 판독이 안 되는 칸이 있습니다. 해당 칸이 선명한 기록부를 재발급해 주시겠습니까?\n**안내:** 답변 확인 전에는 계약을 보류하시길 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "186우5821",
+   "vin": "KPTAF0XDDPS463396",
+   "decision": "검토필요",
+   "reason_codes": [
+    "R-UNREADABLE"
+   ],
+   "reason": "심하게 흐려 ⑫·⑬ 사고·교환 이력 칸을 읽을 수 없어 판정에 필요한 내용을 확인할 수 없음."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": false,
+   "vin": false
+  },
+  "markers_removed": 10
+ },
+ {
+  "set": "set28",
+  "doc": "set28",
+  "case": "AB",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "코나 (세부모델: 1.6T 프리미엄 )",
+    "vehicle_no": "58소3381",
+    "vin": "KMHKZM39BNK557633",
+    "model_year": "2022",
+    "first_registration": "2021-07-19",
+    "mileage_km": "47900",
+    "inspection_date": "2026-10-17",
+    "inspection_valid_until": "2027-07-18",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "침수",
+    "remarks": "* 실내 바닥 매트 하부 및 시트레일 침수 흔적 확인.",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "58소3381",
+   "vin": "KMHKZM39BNK557633",
+   "reason_codes": [
+    "F-SPECIAL"
+   ],
+   "reason": "특별이력이 침수로 기록되어 있고, 특기사항에도 실내 바닥 매트 하부 및 시트레일 침수 흔적이 확인되어 있어 부적합으로 1차 판정합니다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n- **차량:** 코나 (세부모델: 1.6T 프리미엄 ) / 58소3381\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-SPECIAL | 특별이력 / 특기사항 및 점검자의 의견 | 침수 / 실내 바닥 매트 하부 및 시트레일 침수 흔적 확인. |\n\n- **권고:** 침수 이력과 침수 흔적이 기록되어 있으므로 구매 보류 또는 전문 점검을 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "58소3381",
+   "vin": "KMHKZM39BNK557633",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-SPECIAL"
+   ],
+   "reason": "⑪ 사용이력의 특별이력이 '침수'로 표시됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 13
+ },
+ {
+  "set": "set29",
+  "doc": "set29",
+  "case": "AC",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "BMW 520i (세부모델: M 스포츠)",
+    "vehicle_no": "35오6792",
+    "vin": "WBA5CFSHXLE056722",
+    "model_year": "2020",
+    "first_registration": "2019-09-30",
+    "mileage_km": "69880",
+    "inspection_date": "2026-10-30",
+    "inspection_valid_until": "2025-09-29",
+    "accident_history": "없음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "검토필요",
+   "vehicle_no": "35오6792",
+   "vin": "WBA5CFSHXLE056722",
+   "reason_codes": [
+    "R-INSP"
+   ],
+   "reason": "검사유효기간이 2025-09-29로 기준일 2026-11-05보다 앞서므로 R-INSP에 해당합니다. 사고이력 없음, 단순수리 없음, 이상 부위 없음, 주요장치 이상 없음으로 부적합 사유는 확인되지 않습니다."
+  },
+  "branch": {
+   "name": "판매자_확인요청",
+   "text": "**차량 상태 확인 요청**\n차량: BMW 520i (세부모델: M 스포츠), 35오6792\nR-INSP: 검사유효기간이 기준일 전에 만료되었습니다. 검사 일정과 비용 부담을 알려 주십시오.\n안내: 위 답변을 확인하기 전에는 계약 진행을 보류하시는 것을 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "35오6792",
+   "vin": "WBA5CFSHXLE056722",
+   "decision": "검토필요",
+   "reason_codes": [
+    "R-INSP"
+   ],
+   "reason": "④ 검사유효기간이 2025-09-29에 끝나 판정 기준일(2026-11-05)에 이미 만료된 상태임."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 7
+ },
+ {
+  "set": "set30",
+  "doc": "set30",
+  "case": "AD",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "스포티지 (세부모델: 1.6T 노블레스)",
+    "vehicle_no": "219두5507",
+    "vin": "KNAPGFAWAPK221560",
+    "model_year": "2023",
+    "first_registration": "2022-08-30",
+    "mileage_km": "41230",
+    "inspection_date": "2026-10-21",
+    "inspection_valid_until": "2028-08-29",
+    "accident_history": "있음",
+    "simple_repair": "없음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "적합",
+   "vehicle_no": "219두5507",
+   "vin": "KNAPGFAWAPK221560",
+   "reason_codes": [],
+   "reason": "사고이력은 있음이지만 이상 부위가 후드 W, 프론트펜더 X로 모두 외판 1랭크에 해당하여 부적합 또는 검토필요 코드에 해당하지 않습니다. 주요장치 이상 항목은 없고, 계기상태 양호, 차대번호 표기 양호, 튜닝 없음, 특별이력 없음, 용도변경 없음, 리콜 해당없음이며 검사유효기간 2028-08-29와 점검일 2026-10-21 기준으로 R-INSP와 R-OLD에도 해당하지 않습니다."
+  },
+  "branch": {
+   "name": "구매_체크시트",
+   "text": "# 구매 전 확인 체크시트\n- **차량**: 스포티지(세부모델: 1.6T 노블레스), 219두5507\n- **기록부 확인 결과 요약**: 사고이력 있음, 단순수리 없음, 이상 부위는 후드 W·프론트펜더 X, 주요장치 이상 없음\n- **계약 전 확인 항목**\n  1. 실차 차대번호와 기록부 차대번호(KNAPGFAWAPK221560) 대조\n  2. 계기판 주행거리 41,230km 일치 여부 확인\n  3. 성능·상태점검 보증기간 30일, 보증거리 2,000km 범위 확인\n  4. 외판 수리 부위(후드, 프론트펜더) 실차 상태 확인\n  5. 리콜 해당없음, 특별이력 없음 여부 추가 확인\n- **안내**: 본 내용은 기록부 기준 1차 판정이며, 계약 전 실차와 서류를 함께 확인하시길 권장드립니다."
+  },
+  "answer": {
+   "vehicle_no": "219두5507",
+   "vin": "KNAPGFAWAPK221560",
+   "decision": "적합",
+   "reason_codes": [],
+   "reason": "⑬ 1.후드 판금/용접과 2.프론트펜더(우) 교환은 1랭크 외판 단순수리로 주요골격이 아니며, 그 밖의 판정 사유가 없음."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 7
+ },
+ {
+  "set": "set31",
+  "doc": "set31",
+  "case": "AE",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "QM6 (세부모델: 2.0 GDeRE)",
+    "vehicle_no": "118로2290",
+    "vin": "KNMA01A5FLK304446",
+    "model_year": "2020",
+    "first_registration": "2020-02-13",
+    "mileage_km": "91200",
+    "inspection_date": "2026-09-26",
+    "inspection_valid_until": "2028-02-12",
+    "accident_history": "있음",
+    "simple_repair": "있음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "118로2290",
+   "vin": "KNMA01A5FLK304446",
+   "reason_codes": [
+    "F-FRAME"
+   ],
+   "reason": "사고이력은 있음이고, 이상 부위에 주요골격인 사이드멤버 X와 휠하우스 W가 포함되어 있어 주요골격에 X 또는 W가 있는 경우에 해당합니다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n- **차량**: QM6 (세부모델: 2.0 GDeRE), 118로2290\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-FRAME | ⑫ 사고이력 / ⑬ 교환, 판금 등 이상 부위 | 사고이력: 있음, 주요골격 B랭크: 12.사이드멤버, 13.휠하우스 |\n\n- **권고**: 주요골격 관련 이력이 확인되어 구매 보류 또는 전문 점검을 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "118로2290",
+   "vin": "KNMA01A5FLK304446",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-FRAME"
+   ],
+   "reason": "⑬ 12.사이드멤버(우전) 교환과 13.휠하우스(우전) 판금/용접이 주요골격 손상으로 표시됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 13
+ },
+ {
+  "set": "set32",
+  "doc": "set32",
+  "case": "AF",
+  "pages": 2,
+  "page_types": [
+   {
+    "split": "1-2p",
+    "type": "성능·상태점검기록부"
+   }
+  ],
+  "extracted": [
+   {
+    "car_name": "G80 (세부모델: 2.5T AWD)",
+    "vehicle_no": "47러9021",
+    "vin": "KMTGCZ4KCMS527486",
+    "model_year": "2021",
+    "first_registration": "2020-12-14",
+    "mileage_km": "88120",
+    "inspection_date": "2026-09-30",
+    "inspection_valid_until": "2026-12-13",
+    "accident_history": "있음",
+    "simple_repair": "있음",
+    "damaged_parts": "",
+    "device_issues": "",
+    "usage_change": "없음",
+    "special_history": "없음",
+    "remarks": "",
+    "split": "1-2p"
+   }
+  ],
+  "predicted": {
+   "decision_choice": "부적합",
+   "vehicle_no": "47러9021",
+   "vin": "KMTGCZ4KCMS527486",
+   "reason_codes": [
+    "F-FRAME"
+   ],
+   "reason": "사고이력이 있음이고 이상 부위에 프론트패널 W, 휠하우스 W가 포함되어 있어 주요골격에 판금 또는 용접 이력이 확인됩니다."
+  },
+  "branch": {
+   "name": "구매위험_안내",
+   "text": "# 구매 위험 안내\n- **차량:** G80 (세부모델: 2.5T AWD), 47러9021\n\n| 사유 코드 | 기록부 칸 | 기재 값 |\n|---|---|---|\n| F-FRAME | ⑬ 교환, 판금 등 이상 > 주요골격 | ☑13.휠하우스 |\n\n- **권고:** 주요골격 이상이 기재되어 있어 구매 보류 또는 전문 점검을 권고드립니다."
+  },
+  "answer": {
+   "vehicle_no": "47러9021",
+   "vin": "KMTGCZ4KCMS527486",
+   "decision": "부적합",
+   "reason_codes": [
+    "F-FRAME"
+   ],
+   "reason": "⑬ 9.프론트패널 교환과 13.휠하우스(좌전) 판금/용접이 주요골격 손상으로 표시됨."
+  },
+  "match": {
+   "decision": true,
+   "codes": true,
+   "vehicle_no": true,
+   "vin": true
+  },
+  "markers_removed": 11
  }
 ]

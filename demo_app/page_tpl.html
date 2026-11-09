@@ -12,22 +12,6 @@
   --mono:var(--font);
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#10141c; --surface:#171d28; --surface2:#1e2533; --fg:#e4e8f0; --muted:#98a3b8; --line:#2c3547;
-    --accent:#8fa8f0; --accent-fg:#10141c; --accent-soft:#222c46; --focus:#a9bcf5;
-    --ok:#6fd09a; --ok-bg:#16301f; --bad:#ff9a9d; --bad-bg:#3a1d20; --warn:#f0c46a; --warn-bg:#382c10;
-    --shadow:rgba(0,0,0,.4); --img-bg:#0c1017;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#10141c; --surface:#171d28; --surface2:#1e2533; --fg:#e4e8f0; --muted:#98a3b8; --line:#2c3547;
-  --accent:#8fa8f0; --accent-fg:#10141c; --accent-soft:#222c46; --focus:#a9bcf5;
-  --ok:#6fd09a; --ok-bg:#16301f; --bad:#ff9a9d; --bad-bg:#3a1d20; --warn:#f0c46a; --warn-bg:#382c10;
-  --shadow:rgba(0,0,0,.4); --img-bg:#0c1017;
-  color-scheme: dark;
-}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.55;overflow-x:hidden;font-variant-numeric:tabular-nums}
@@ -112,6 +96,7 @@ td.c{text-align:center}
 .vv{display:block;white-space:nowrap;font-family:var(--font);font-size:13.5px;line-height:1.5}
 .vv .l{font-family:inherit;font-size:inherit;color:var(--muted);margin-right:6px}
 .vv.bad .val,.vv.bad .mk{color:var(--bad);font-weight:700} .vv .mk.yes{color:var(--ok);font-weight:700}
+.vv .val .wrong{color:var(--bad);font-weight:700}
 .yes{color:var(--ok);font-weight:700} .no{color:var(--bad);font-weight:700}
 .vnote{margin:14px 0 0;display:flex;flex-direction:column;gap:8px}
 .vnote p{margin:0}
@@ -150,7 +135,7 @@ td.c{text-align:center}
     <div class="team">Agent가 돼버려</div>
     <h1>중고차 기록부 구매판정</h1>
     <p class="lead">성능·상태점검기록부 PDF로 구매 적합 여부, 사유 코드, 후속 안내문을 생성함.</p>
-    <p class="run">실행: 2026-11-05 · Upstage Studio 워크플로우 · 더미 데이터(가상 차량번호·차대번호)</p>
+    <p class="run">실행: 2026-11-09 · Upstage Studio 워크플로우 · 더미 데이터(가상 차량번호·차대번호)</p>
   </header>
   <nav class="tabs" aria-label="화면 선택">
     <a id="nav-demo" href="#demo">데모</a>
@@ -211,7 +196,7 @@ td.c{text-align:center}
     if(state.page>=c.pages) state.page=0;
     var g=el('div','grid'); app.appendChild(g);
 
-    var p1=el('section','panel'); p1.appendChild(el('h2',null,'샘플 10건'));
+    var p1=el('section','panel'); p1.appendChild(el('h2',null,'샘플 '+CASES.length+'건'));
     var ul=el('ul'); ul.id='picker';
     CASES.forEach(function(x){
       var li=el('li'); var b=el('button','pick'); b.type='button'; b.id='pick-'+x.set;
@@ -327,7 +312,7 @@ td.c{text-align:center}
     });
     app.appendChild(sum);
 
-    var pn=el('section','panel'); pn.appendChild(el('h2',null,'정답과 예측 비교 (10건)'));
+    var pn=el('section','panel'); pn.appendChild(el('h2',null,'정답과 예측 비교 ('+CASES.length+'건)'));
     var tw=el('div','tw'); var tb=el('table'); tb.id='verify-table';
     var th=el('thead'); var hr=el('tr');
     ['set','결과','판정','사유 코드','등록번호','차대번호'].forEach(function(h){ hr.appendChild(el('th',null,h)); });
@@ -346,11 +331,10 @@ td.c{text-align:center}
       td=el('td','vcell'); td.id='v-'+c.set+'-codes';
       var ac=c.answer.reason_codes||[], pc=c.predicted.reason_codes||[];
       var q1=el('span','vv'); q1.appendChild(el('span','l','정답 ')); q1.appendChild(el('span','val',ac.length?ac.join(', '):'없음')); td.appendChild(q1);
-      var q2=el('span','vv'+(r.codes?'':' bad')); q2.appendChild(el('span','l','예측 ')); q2.appendChild(el('span','val',pc.length?pc.join(', '):'없음')); td.appendChild(q2);
-      if(!r.codes){
-        if(r.extra.length){ var x=el('span','vv bad'); x.appendChild(el('span','l','오탐 ')); x.appendChild(el('span','val',r.extra.join(', '))); td.appendChild(x); }
-        if(r.missing.length){ var x=el('span','vv bad'); x.appendChild(el('span','l','미탐 ')); x.appendChild(el('span','val',r.missing.join(', '))); td.appendChild(x); }
-      }
+      var q2=el('span','vv'); q2.appendChild(el('span','l','예측 ')); var qv=el('span','val');
+      if(!pc.length) qv.textContent='없음';
+      pc.forEach(function(x,j){ if(j) qv.appendChild(document.createTextNode(', ')); qv.appendChild(el('span',ac.indexOf(x)<0?'wrong':'',x)); });
+      q2.appendChild(qv); td.appendChild(q2);
       tr.appendChild(td);
       [['vehicle_no'],['vin']].forEach(function(f){ var k=f[0], ok=r[k]; var cell=el('td','vcell'); cell.id='v-'+c.set+'-'+k;
         var l1=el('span','vv'); l1.appendChild(el('span','l','정답 ')); l1.appendChild(el('span','val',String(c.answer[k]==null?'':c.answer[k])));

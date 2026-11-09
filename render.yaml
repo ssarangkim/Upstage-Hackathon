@@ -12,6 +12,6 @@ services:
       - key: AGENT_ID
         value: agt_niiPU8ZjFMUTUjme4TaxUE
       - key: CONFIG_ID
-        value: "1"
+        value: "2"
       - key: PYTHON_VERSION
         value: 3.13.5
